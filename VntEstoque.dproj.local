@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/08/22 18:04:37.000.779,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/08/22 18:04:52.000.897,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\ULogin.pas</Transaction>
+    <Transaction>2020/08/22 18:05:14.000.913,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UMenu.pas</Transaction>
+    <Transaction>2020/08/22 18:05:14.000.913,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UMenu.fmx</Transaction>
+    <Transaction>2020/08/22 18:05:24.000.922,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\VntEstoque.dproj</Transaction>
+    <Transaction>2020/08/22 18:05:36.000.569,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit2.pas</Transaction>
+    <Transaction>2020/08/22 18:05:51.000.293,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit2.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UModelo.fmx</Transaction>
+    <Transaction>2020/08/22 18:05:51.000.293,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit2.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UModelo.pas</Transaction>
+    <Transaction>2020/08/22 18:06:26.000.893,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
+    <Transaction>2020/08/22 18:06:47.000.858,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.dfm=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UDM.dfm</Transaction>
+    <Transaction>2020/08/22 18:06:47.000.858,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UDM.pas</Transaction>
+    <Transaction>2020/08/23 00:07:27.000.533,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
+    <Transaction>2020/08/23 00:08:27.000.772,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UUsuario.fmx</Transaction>
+    <Transaction>2020/08/23 00:08:27.000.772,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UUsuario.pas</Transaction>
+    <Transaction>2020/08/23 00:54:52.000.026,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
+    <Transaction>2020/08/23 00:55:24.000.954,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UPessoa.fmx</Transaction>
+    <Transaction>2020/08/23 00:55:24.000.954,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UPessoa.pas</Transaction>
+    <Transaction>2020/08/23 01:59:18.000.033,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Loading.pas</Transaction>
+    <Transaction>2020/08/23 01:59:18.000.521,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\uFormat.pas</Transaction>
+    <Transaction>2020/08/23 02:05:14.000.940,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\uCepWS.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>
