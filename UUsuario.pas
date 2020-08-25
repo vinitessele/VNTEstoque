@@ -10,7 +10,7 @@ uses
   System.Rtti, FMX.Grid.Style, FMX.Bind.Grid, System.Bindings.Outputs,
   FMX.Bind.Editors, Data.Bind.Controls, Data.Bind.EngExt, FMX.Bind.DBEngExt,
   Data.Bind.Components, FMX.Layouts, FMX.Bind.Navigator, Data.Bind.Grid,
-  Data.Bind.DBScope, FMX.ScrollBox, FMX.Grid;
+  Data.Bind.DBScope, FMX.ScrollBox, FMX.Grid, FMX.ListBox;
 
 type
   TFrmUsuario = class(TFrmModelo)
@@ -20,10 +20,6 @@ type
     editsenha: TEdit;
     RectEsconde: TRectangle;
     RectExibi: TRectangle;
-    NavigatorBindSourceDB1: TBindNavigator;
-    BindingsList1: TBindingsList;
-    BindSourceDB1: TBindSourceDB;
-    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     procedure RectSalvarClick(Sender: TObject);
     procedure RectEscondeClick(Sender: TObject);
     procedure RectExibiClick(Sender: TObject);

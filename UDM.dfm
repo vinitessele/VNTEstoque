@@ -6,7 +6,7 @@ object DM: TDM
     Params.Strings = (
       
         'Database=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VN' +
-        'TEstoque\Banco\BANCO.FDB'
+        'TEstoque\Banco\BANCODADOS.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'Protocol=TCPIP'
@@ -23,7 +23,6 @@ object DM: TDM
     Top = 16
   end
   object FDQUsuario: TFDQuery
-    Active = True
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
@@ -62,7 +61,6 @@ object DM: TDM
   object FDQPessoa: TFDQuery
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
-    UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'gen_pessoa'
     UpdateOptions.AutoIncFields = 'id'
     SQL.Strings = (
@@ -178,7 +176,6 @@ object DM: TDM
     end
   end
   object FDQCidade: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from cidade')
@@ -202,7 +199,6 @@ object DM: TDM
     end
   end
   object FDQEstado: TFDQuery
-    Active = True
     Connection = FDConnection1
     SQL.Strings = (
       'select * from estado')
@@ -226,5 +222,94 @@ object DM: TDM
       FixedChar = True
       Size = 2
     end
+  end
+  object FDQProdutos: TFDQuery
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_produto'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from produto')
+    Left = 232
+    Top = 184
+    object FDQProdutosID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQProdutosDATACADASTRO: TDateField
+      FieldName = 'DATACADASTRO'
+      Origin = 'DATACADASTRO'
+    end
+    object FDQProdutosDATAEXCLUSAO: TDateField
+      FieldName = 'DATAEXCLUSAO'
+      Origin = 'DATAEXCLUSAO'
+    end
+    object FDQProdutosID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      Origin = 'ID_USUARIO'
+    end
+    object FDQProdutosDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 50
+    end
+    object FDQProdutosCODIGOBARRA: TStringField
+      FieldName = 'CODIGOBARRA'
+      Origin = 'CODIGOBARRA'
+      Size = 25
+    end
+    object FDQProdutosESTOQUE: TFMTBCDField
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Precision = 18
+      Size = 2
+    end
+    object FDQProdutosESTOQUEMINIMO: TFMTBCDField
+      FieldName = 'ESTOQUEMINIMO'
+      Origin = 'ESTOQUEMINIMO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQProdutosVALORCOMPRA: TFMTBCDField
+      FieldName = 'VALORCOMPRA'
+      Origin = 'VALORCOMPRA'
+      Precision = 18
+      Size = 2
+    end
+    object FDQProdutosVALORVENDA: TFMTBCDField
+      FieldName = 'VALORVENDA'
+      Origin = 'VALORVENDA'
+      Precision = 18
+      Size = 2
+    end
+    object FDQProdutosPORCENTAGEMLUCRO: TFMTBCDField
+      FieldName = 'PORCENTAGEMLUCRO'
+      Origin = 'PORCENTAGEMLUCRO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQProdutosUNIDADEMEDIA: TStringField
+      FieldName = 'UNIDADEMEDIA'
+      Origin = 'UNIDADEMEDIA'
+      Size = 2
+    end
+    object FDQProdutosOBSERVACOES: TStringField
+      FieldName = 'OBSERVACOES'
+      Origin = 'OBSERVACOES'
+      Size = 255
+    end
+    object FDQProdutosCONTROLEESTOQUE: TStringField
+      FieldName = 'CONTROLEESTOQUE'
+      Origin = 'CONTROLEESTOQUE'
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object tabBusca: TFDQuery
+    Connection = FDConnection1
+    Left = 452
+    Top = 160
   end
 end

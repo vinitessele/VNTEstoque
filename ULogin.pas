@@ -10,13 +10,13 @@ uses
 
 type
   TFrmLogin = class(TForm)
+    RectEsconde: TRectangle;
+    Label1: TLabel;
     Image1: TImage;
     EditLogin: TEdit;
     EditSenha: TEdit;
     btnOK: TSpeedButton;
     BtnConcelar: TSpeedButton;
-    Label1: TLabel;
-    RectEsconde: TRectangle;
     RectExibi: TRectangle;
     procedure btnOKClick(Sender: TObject);
     procedure RectEscondeClick(Sender: TObject);

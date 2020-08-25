@@ -1,149 +1,146 @@
 ﻿[RectAlterar]
-Coordinates=211,2019,69,33
+Coordinates=103,1586,69,33
 
 [ToolBar1]
-Coordinates=599,2019,58,33
+Coordinates=10,1586,58,33
 
 [RectNovo]
-Coordinates=891,2019,62,33
+Coordinates=1722,1502,62,33
 
 [RectSalvar]
-Coordinates=306,2019,67,33
+Coordinates=307,1586,67,33
 
 [RectpPesquisar]
-Coordinates=683,2019,92,33
+Coordinates=1591,1502,92,33
 
 [Grid1]
-Coordinates=280,121,58,429
+Coordinates=247,1072,53,141
 Visible=True
 
 [GroupBox1]
-Coordinates=1154,10,70,51
+Coordinates=1264,1502,70,51
 
 [RectExclir]
-Coordinates=801,2019,64,33
+Coordinates=208,1586,64,33
 
 [StatusBar1]
-Coordinates=399,2019,68,33
+Coordinates=1369,1502,68,33
 
 [RectCancelar]
-Coordinates=493,2019,80,33
+Coordinates=1473,1502,80,33
 
 []
-Coordinates=275,10,69,51
+Coordinates=10,385,92,519
 
 [Label1]
-Coordinates=67,2019,46,51
+Coordinates=616,1502,46,51
 
 [GroupBox2]
-Coordinates=1919,10,70,51
+Coordinates=1474,10,70,51
 
 [OpenDialog1]
 Coordinates=121,740,77,33
 
 [Label12]
-Coordinates=1769,10,52,51
+Coordinates=89,1502,52,51
 
 [EditNome]
-Coordinates=278,832,62,51
-
-[EditEndereco]
-Coordinates=269,1387,80,51
+Coordinates=243,1418,62,51
 
 [Label8]
-Coordinates=1697,10,46,51
+Coordinates=1023,1502,46,51
 
 [Label6]
-Coordinates=1625,10,46,51
+Coordinates=1185,1502,46,51
 
 [EditId]
-Coordinates=288,610,42,51
+Coordinates=254,10,42,51
 
 [Label4]
-Coordinates=139,2019,46,51
+Coordinates=1395,10,46,51
 
 [EditDtNascimento]
-Coordinates=258,1720,103,51
+Coordinates=219,1300,103,51
 
 [Label13]
-Coordinates=754,10,52,51
+Coordinates=530,1502,52,51
 
 [bntFoto]
-Coordinates=1547,10,52,51
+Coordinates=939,1502,52,51
 
 [EditNumero]
-Coordinates=273,1165,72,51
+Coordinates=237,836,72,51
 
 [EditCelular]
-Coordinates=275,721,68,51
+Coordinates=239,364,68,51
 
 [EditRgIE]
-Coordinates=281,1831,57,51
+Coordinates=246,954,57,51
 
 [Label11]
-Coordinates=910,10,52,51
+Coordinates=254,1502,52,51
 
 [EditCidade]
-Coordinates=1060,10,68,51
+Coordinates=340,1502,68,51
 
 [DM.FDQPessoa]
-Coordinates=10,10,91,33
-Visible=False
+Coordinates=111,20,91,33
 
 [Label5]
-Coordinates=988,10,46,51
+Coordinates=175,1502,46,51
 
 [Label10]
-Coordinates=1469,10,52,51
+Coordinates=444,1502,52,51
 
 [Label3]
-Coordinates=2015,10,46,51
+Coordinates=1198,10,46,51
 
 [DM.FDQEstado]
-Coordinates=524,10,89,105
+Coordinates=839,10,89,105
 
 [EditFantasia]
-Coordinates=272,1054,75,51
+Coordinates=235,600,75,51
 
 [Image1]
-Coordinates=1322,10,49,51
+Coordinates=1102,1502,49,51
 
 [Label14]
-Coordinates=832,10,52,51
+Coordinates=695,1502,52,51
 
 [EditEmail]
-Coordinates=279,1498,61,51
+Coordinates=244,718,61,51
 
 [Label7]
-Coordinates=1250,10,46,51
-
-[EditBairro]
-Coordinates=277,943,64,51
+Coordinates=10,1502,46,51
 
 [Label2]
-Coordinates=1397,10,46,51
+Coordinates=860,1502,46,51
 
 [DM.FDQCidade]
-Coordinates=639,10,89,105
+Coordinates=970,10,89,105
 
 [EditCPFCNPJ]
-Coordinates=269,1276,81,51
+Coordinates=230,128,81,51
 
 [EditCep]
-Coordinates=283,1942,53,51
+Coordinates=248,482,53,51
 
 [DM.FDQUsuario]
-Coordinates=405,10,93,141
+Coordinates=558,10,93,141
 
 [Label9]
-Coordinates=1847,10,46,51
+Coordinates=781,1502,46,51
 
-[BindSourceDB1]
-Coordinates=67,841,92,699
+[ComboBoxGenero]
+Coordinates=693,10,105,123
 
-[NavigatorBindSourceDB1]
-Coordinates=239,1609,140,51
+[DM.FDQProdutos]
+Coordinates=385,10,123,303
 
-[BindingsList1]
-Coordinates=121,170,82,33
+[EditEndereco]
+Coordinates=470,530,80,51
+Visible=True
+
+[EditBairro]
+Coordinates=590,600,64,51
 

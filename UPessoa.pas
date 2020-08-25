@@ -28,14 +28,12 @@ type
     Label9: TLabel;
     EditCep: TEdit;
     Label6: TLabel;
-    EditEndereco: TEdit;
     Label7: TLabel;
     EditNumero: TEdit;
     Label10: TLabel;
     EditDtNascimento: TEdit;
     Label11: TLabel;
     Label8: TLabel;
-    EditBairro: TEdit;
     Label14: TLabel;
     EditCidade: TEdit;
     Label12: TLabel;
@@ -44,23 +42,9 @@ type
     EditEmail: TEdit;
     Image1: TImage;
     bntFoto: TButton;
-    BindSourceDB1: TBindSourceDB;
-    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
-    NavigatorBindSourceDB1: TBindNavigator;
-    BindingsList1: TBindingsList;
-    LinkControlToField1: TLinkControlToField;
-    LinkControlToField2: TLinkControlToField;
-    LinkControlToField3: TLinkControlToField;
-    LinkControlToField4: TLinkControlToField;
-    LinkControlToField5: TLinkControlToField;
-    LinkControlToField6: TLinkControlToField;
-    LinkControlToField7: TLinkControlToField;
-    LinkControlToField8: TLinkControlToField;
-    LinkControlToField9: TLinkControlToField;
-    LinkControlToField10: TLinkControlToField;
-    LinkControlToField11: TLinkControlToField;
-    LinkControlToField13: TLinkControlToField;
     ComboBoxGenero: TComboBox;
+    EditEndereco: TEdit;
+    EditBairro: TEdit;
     procedure bntFotoClick(Sender: TObject);
     procedure EditCepExit(Sender: TObject);
     procedure RectNovoClick(Sender: TObject);
@@ -68,6 +52,11 @@ type
     procedure RectSalvarClick(Sender: TObject);
     procedure RectCancelarClick(Sender: TObject);
     procedure RectExclirClick(Sender: TObject);
+    procedure EditDtNascimentoTyping(Sender: TObject);
+    procedure EditCPFCNPJTyping(Sender: TObject);
+    procedure EditLocalizarKeyUp(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure ListBox1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,7 +70,7 @@ implementation
 
 {$R *.fmx}
 
-uses UDM, uCepWS;
+uses UDM, uCepWS, Loading, uFormat;
 
 procedure TFrmPessoa.bntFotoClick(Sender: TObject);
 begin
@@ -95,16 +84,81 @@ end;
 procedure TFrmPessoa.EditCepExit(Sender: TObject);
 var
   dadoscep: TCep;
+  endereco, bairro, cidade, uf: string;
+
 begin
   inherited;
   dadoscep := TCep.Create;
   dadoscep.Consultar(EditCep.Text);
-  EditEndereco.Text := dadoscep.Logradouro;
-  EditBairro.Text := dadoscep.Bairro;
-  dm.FDQCidade.Locate('nome', dadoscep.Localidade, []);
+  endereco := dadoscep.Logradouro;
+  bairro := dadoscep.bairro;
+  cidade := dadoscep.Localidade;
+  uf := dadoscep.uf;
+  dadoscep.Free;
+
+  dm.FDQCidade.Locate('nome', cidade, []);
   EditCidade.Tag := dm.FDQCidadeID.AsInteger;
-  EditCidade.Text := dadoscep.Localidade + '/' + dadoscep.Uf;
-  //dadoscep.Free;
+
+  EditEndereco.Text := endereco;
+  EditBairro.Text := bairro;
+  EditCidade.Text := cidade + '/' + uf;
+
+end;
+
+procedure TFrmPessoa.EditCPFCNPJTyping(Sender: TObject);
+begin
+  inherited;
+  Formatar(EditCPFCNPJ, TFormato.CNPJorCPF);
+end;
+
+procedure TFrmPessoa.EditDtNascimentoTyping(Sender: TObject);
+begin
+  inherited;
+  Formatar(EditDtNascimento, TFormato.Dt);
+end;
+
+procedure TFrmPessoa.EditLocalizarKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  inherited;
+  ListBox1.Visible := True;
+  ListBox1.items.Clear;
+  dm.tabBusca.Open('SELECT ID,Nome,Rua,CpfCnpj FROM pessoa ' + ' WHERE ' +
+    ' Nome LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%') +
+    ' OR CpfCnpj LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%'));
+
+  while not dm.tabBusca.Eof do
+  begin
+    ListBox1.items.Add(dm.tabBusca.FieldByName('Nome').AsString);
+    dm.tabBusca.Next;
+  end;
+
+end;
+
+procedure TFrmPessoa.ListBox1DblClick(Sender: TObject);
+begin
+  inherited;
+  dm.FDQPessoa.Locate('nome', ListBox1.items[ListBox1.ItemIndex], []);
+
+  EditNome.Text := dm.FDQPessoaNOME.AsString;
+  EditFantasia.Text := dm.FDQPessoaNOMEFANTASIA.AsString;
+  EditCPFCNPJ.Text := dm.FDQPessoaCPFCNPJ.AsString;
+  EditRgIE.Text := dm.FDQPessoaIERG.AsString;
+  EditEndereco.Text := dm.FDQPessoaRUA.AsString;
+  EditNumero.Text := dm.FDQPessoaNUMERO.AsString;
+  EditBairro.Text := dm.FDQPessoaBAIRRO.AsString;
+  EditCep.Text := dm.FDQPessoaCEP.AsString;
+  EditCelular.Text := dm.FDQPessoaTELEFONE1.AsString;
+  EditEmail.Text := dm.FDQPessoaEMAIL1.AsString;
+  EditDtNascimento.Text := dm.FDQPessoaDATANASC.AsString;
+
+  ListBox1.Visible := false;
+  {
+    StreamImg := TMemoryStream.Create;
+    Image1.Bitmap.SaveToStream(StreamImg);
+    dm.FDQPessoaIMG.LoadFromStream(StreamImg);
+  }
+
 end;
 
 procedure TFrmPessoa.RectAlterarClick(Sender: TObject);
@@ -123,8 +177,9 @@ end;
 
 procedure TFrmPessoa.RectExclirClick(Sender: TObject);
 begin
+  GroupBox2.Enabled := false;
+  dm.FDQPessoa.Delete;
   inherited;
-  GroupBox2.Enabled := false
 end;
 
 procedure TFrmPessoa.RectNovoClick(Sender: TObject);
@@ -150,7 +205,7 @@ begin
   dm.FDQPessoaBAIRRO.AsString := EditBairro.Text;
   dm.FDQPessoaCEP.AsString := EditCep.Text;
   dm.FDQPessoaTELEFONE1.AsString := EditCelular.Text;
-  dm.FDQPessoaSEXO.AsString := ComboBoxGenero.Items[ComboBoxGenero.ItemIndex];
+  dm.FDQPessoaSEXO.AsString := ComboBoxGenero.items[ComboBoxGenero.ItemIndex];
   dm.FDQPessoaEMAIL1.AsString := EditEmail.Text;
   dm.FDQPessoaDATANASC.AsString := EditDtNascimento.Text;
   dm.FDQPessoaID_CIDADE.AsInteger := EditCidade.Tag;

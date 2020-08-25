@@ -11,7 +11,8 @@ uses
   UPessoa in 'UPessoa.pas' {FrmPessoa},
   Loading in 'Loading.pas',
   uFormat in 'uFormat.pas',
-  uCepWS in 'uCepWS.pas';
+  uCepWS in 'uCepWS.pas',
+  UProdutos in 'UProdutos.pas' {FrmProdutos};
 
 {$R *.res}
 
@@ -22,5 +23,6 @@ begin
   Application.CreateForm(TFrmMenu, FrmMenu);
   Application.CreateForm(TFrmUsuario, FrmUsuario);
   Application.CreateForm(TFrmPessoa, FrmPessoa);
+  Application.CreateForm(TFrmProdutos, FrmProdutos);
   Application.Run;
 end.

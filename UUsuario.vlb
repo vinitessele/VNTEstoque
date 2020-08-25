@@ -48,13 +48,9 @@ Coordinates=424,10,53,123
 Visible=True
 
 [Dm.FDQUsuario]
-Coordinates=590,10,93,33
-Visible=False
+Coordinates=693,20,93,33
 
 []
-Coordinates=10,10,108,204
-
-[BindingsList1]
 Coordinates=137,87,82,33
 
 [DM.FDQEstado]
@@ -65,10 +61,4 @@ Coordinates=108,308,91,447
 
 [DM.FDQCidade]
 Coordinates=90,30,89,105
-
-[BindSourceDB1]
-Coordinates=590,10,92,159
-
-[NavigatorBindSourceDB1]
-Coordinates=680,50,140,51
 

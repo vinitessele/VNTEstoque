@@ -51,6 +51,22 @@ type
     FDQEstadoID: TIntegerField;
     FDQEstadoNOME: TStringField;
     FDQEstadoUF: TStringField;
+    FDQProdutos: TFDQuery;
+    FDQProdutosID: TIntegerField;
+    FDQProdutosDATACADASTRO: TDateField;
+    FDQProdutosDATAEXCLUSAO: TDateField;
+    FDQProdutosID_USUARIO: TIntegerField;
+    FDQProdutosDESCRICAO: TStringField;
+    FDQProdutosCODIGOBARRA: TStringField;
+    FDQProdutosESTOQUE: TFMTBCDField;
+    FDQProdutosESTOQUEMINIMO: TFMTBCDField;
+    FDQProdutosVALORCOMPRA: TFMTBCDField;
+    FDQProdutosVALORVENDA: TFMTBCDField;
+    FDQProdutosPORCENTAGEMLUCRO: TFMTBCDField;
+    FDQProdutosUNIDADEMEDIA: TStringField;
+    FDQProdutosOBSERVACOES: TStringField;
+    FDQProdutosCONTROLEESTOQUE: TStringField;
+    tabBusca: TFDQuery;
     procedure FDConnection1AfterConnect(Sender: TObject);
   private
     { Private declarations }
@@ -72,6 +88,7 @@ begin
   FDQCidade.Active := True;
   FDQEstado.Active := True;
   FDQPessoa.Active := True;
+  FDQProdutos.Active := True;
 end;
 
 end.
