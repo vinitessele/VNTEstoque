@@ -1,0 +1,339 @@
+object FrmVenda: TFrmVenda
+  Left = 0
+  Top = 0
+  Caption = 'Venda'
+  ClientHeight = 625
+  ClientWidth = 784
+  Fill.Kind = Solid
+  Position = DesktopCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnKeyDown = FormKeyDown
+  DesignerMasterStyle = 0
+  object GroupBox1: TGroupBox
+    Enabled = False
+    Position.X = 8.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 321.000000000000000000
+    Size.Height = 473.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Identifica'#231#227'o'
+    TabOrder = 0
+    object EditCodigo: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      TextSettings.Font.Size = 22.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 120.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style, FontColor]
+      OnKeyUp = EditCodigoKeyUp
+      OnExit = EditCodigoExit
+    end
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 104.000000000000000000
+      Text = 'C'#243'digo'
+      TabOrder = 8
+    end
+    object EditQuantidade: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Text = '1'
+      TextSettings.Font.Size = 22.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style, FontColor]
+      OnEnter = EditQuantidadeEnter
+      OnExit = EditQuantidadeExit
+    end
+    object Label2: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 160.000000000000000000
+      Text = 'Quantidade'
+      TabOrder = 6
+    end
+    object EditVlUnitario: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      TextSettings.Font.Size = 22.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style, FontColor]
+      OnTyping = EditVlUnitarioTyping
+    end
+    object EditVltotal: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      TextSettings.Font.Size = 22.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 288.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style, FontColor]
+      OnTyping = EditVltotalTyping
+    end
+    object Label4: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 272.000000000000000000
+      Text = 'Valor Total'
+      TabOrder = 5
+    end
+    object Label6: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 16.000000000000000000
+      Text = 'Cliente'
+      TabOrder = 7
+    end
+    object EditCliente: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      TextSettings.Font.Size = 22.000000000000000000
+      Position.X = 8.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Style, FontColor]
+      OnKeyUp = EditClienteKeyUp
+    end
+    object Label3: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 215.000000000000000000
+      Text = 'Valor Unit'#225'rio'
+      TabOrder = 9
+    end
+    object RectConfirma: TRectangle
+      Fill.Color = claMidnightblue
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 13.000000000000000000
+      Position.Y = 422.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      OnClick = RectConfirmaClick
+      object Label9: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 100.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = 'Confirma <F8>'
+        TabOrder = 0
+      end
+    end
+    object RectCancela: TRectangle
+      Fill.Color = claRed
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 205.000000000000000000
+      Position.Y = 422.000000000000000000
+      Size.Width = 100.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      OnClick = RectCancelaClick
+      object Label8: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 100.000000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = 'Cancela <F3>'
+        TabOrder = 0
+      end
+    end
+    object ListBox1: TListBox
+      Position.X = 8.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 200.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 12
+      Visible = False
+      OnDblClick = ListBox1DblClick
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 296.000000000000000000
+      Viewport.Height = 196.000000000000000000
+    end
+    object ListBoxProduto: TListBox
+      Position.X = 8.000000000000000000
+      Position.Y = 160.000000000000000000
+      Size.Width = 300.000000000000000000
+      Size.Height = 200.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 13
+      Visible = False
+      OnDblClick = ListBoxProdutoDblClick
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 296.000000000000000000
+      Viewport.Height = 196.000000000000000000
+    end
+  end
+  object RectItem: TRectangle
+    Align = Top
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 774.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label11: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 774.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 26.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Produtos'
+      TabOrder = 0
+    end
+  end
+  object Rectangle1: TRectangle
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 424.000000000000000000
+    Position.Y = 544.000000000000000000
+    Size.Width = 350.000000000000000000
+    Size.Height = 66.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label10: TLabel
+      Align = Client
+      StyledSettings = [Family]
+      Size.Width = 350.000000000000000000
+      Size.Height = 66.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 36.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = '0,00'
+      TabOrder = 0
+    end
+  end
+  object Rectangle2: TRectangle
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 546.000000000000000000
+    Size.Width = 324.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label12: TLabel
+      StyledSettings = [Family, Style]
+      Position.Y = 8.000000000000000000
+      Size.Width = 145.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.FontColor = claWhite
+      Text = '<F2> Abre Venda'
+      TabOrder = 0
+    end
+    object Label13: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 160.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.FontColor = claWhite
+      Text = '<F10> Fecha Venda'
+      TabOrder = 1
+    end
+  end
+  object Rectangle3: TRectangle
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 424.000000000000000000
+    Position.Y = 61.000000000000000000
+    Size.Width = 350.000000000000000000
+    Size.Height = 36.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label5: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 350.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Itens'
+      TabOrder = 0
+    end
+  end
+  object ListBoxItens: TListBox
+    Position.X = 424.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 345.000000000000000000
+    Size.Height = 433.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'ListBoxItensStyle1'
+    TabOrder = 5
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 341.000000000000000000
+    Viewport.Height = 429.000000000000000000
+  end
+end

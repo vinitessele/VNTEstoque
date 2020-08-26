@@ -44,6 +44,9 @@ type
     procedure EditPercentLucroTyping(Sender: TObject);
     procedure EditVlrVendaTyping(Sender: TObject);
     procedure EditVlrVendaEnter(Sender: TObject);
+    procedure EditLocalizarKeyUp(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure ListBox1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +61,24 @@ implementation
 {$R *.fmx}
 
 uses UDM, Loading, uFormat;
+
+procedure TFrmProdutos.EditLocalizarKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  inherited;
+  ListBox1.Visible := True;
+  ListBox1.items.Clear;
+  dm.tabBusca.Open('SELECT ID,descricao FROM produto ' + ' WHERE ' +
+    ' descricao LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%')+
+    ' OR codigobarra LIKE '+ QuotedStr('%' + EditLocalizar.Text + '%'));
+
+  while not dm.tabBusca.Eof do
+  begin
+    ListBox1.items.Add(dm.tabBusca.FieldByName('descricao').AsString);
+    dm.tabBusca.Next;
+  end;
+
+end;
 
 procedure TFrmProdutos.EditPercentLucroTyping(Sender: TObject);
 begin
@@ -94,6 +115,41 @@ begin
   Formatar(EditVlrVenda, TFormato.Valor);
 end;
 
+procedure TFrmProdutos.ListBox1DblClick(Sender: TObject);
+var
+  nome, sql: string;
+begin
+  inherited;
+  nome := ListBox1.items[ListBox1.ItemIndex];
+
+  sql := 'select id, descricao, codigobarra, estoque, ' +
+    ' estoqueminimo, valorcompra, valorvenda, ' +
+    ' porcentagemlucro, unidademedia, observacoes,controleestoque'+
+    ' from produto'
+    + //
+    ' where descricao =' + QuotedStr(nome);
+
+  dm.tabBusca.Open(sql);
+
+  EditId.Text := dm.tabBusca.FieldByName('id').AsString;
+  EditDescricao.Text := dm.tabBusca.FieldByName('descricao').AsString;
+  EditCodBarras.Text := dm.tabBusca.FieldByName('codigobarra').AsString;
+  EditEstoque.Text := dm.tabBusca.FieldByName('estoque').AsString;
+  EditEstoqueM.Text := dm.tabBusca.FieldByName('estoqueminimo').AsString;
+  EditVlrCompra.Text := dm.tabBusca.FieldByName('valorcompra').AsString;
+  EditVlrVenda.Text := dm.tabBusca.FieldByName('valorvenda').AsString;
+  EditPercentLucro.Text := dm.tabBusca.FieldByName('porcentagemlucro').AsString;
+  EditUnMedida.Text := dm.tabBusca.FieldByName('unidademedia').AsString;
+  Memo1.Text := dm.tabBusca.FieldByName('observacoes').AsString;
+
+  if dm.tabBusca.FieldByName('controleestoque').AsString = 'S' then
+    CheckBox1.IsChecked := True
+  else
+    CheckBox1.IsChecked := false;
+
+  ListBox1.Visible := false;
+end;
+
 procedure TFrmProdutos.RectAlterarClick(Sender: TObject);
 begin
   inherited;
@@ -105,7 +161,7 @@ end;
 procedure TFrmProdutos.RectCancelarClick(Sender: TObject);
 begin
   inherited;
-  GroupBox2.Enabled := False;
+  GroupBox2.Enabled := false;
   dm.FDQProdutos.Cancel;
   dm.FDConnection1.RollbackRetaining;
 end;
@@ -113,7 +169,7 @@ end;
 procedure TFrmProdutos.RectExclirClick(Sender: TObject);
 begin
 
-  GroupBox2.Enabled := False;
+  GroupBox2.Enabled := false;
   dm.FDQProdutos.Delete;
   dm.FDConnection1.CommitRetaining;
   inherited;
@@ -130,7 +186,7 @@ end;
 procedure TFrmProdutos.RectSalvarClick(Sender: TObject);
 begin
   inherited;
-  GroupBox2.Enabled := False;
+  GroupBox2.Enabled := false;
   dm.FDQProdutosDESCRICAO.AsString := EditDescricao.Text;
   dm.FDQProdutosDATACADASTRO.AsDateTime := date;
   dm.FDQProdutosCODIGOBARRA.AsString := EditCodBarras.Text;

@@ -12,7 +12,9 @@ uses
   Loading in 'Loading.pas',
   uFormat in 'uFormat.pas',
   uCepWS in 'uCepWS.pas',
-  UProdutos in 'UProdutos.pas' {FrmProdutos};
+  UProdutos in 'UProdutos.pas' {FrmProdutos},
+  UVenda in 'UVenda.pas' {FrmVenda},
+  UFinalizaVenda in 'UFinalizaVenda.pas' {FrmFinaliza};
 
 {$R *.res}
 
@@ -24,5 +26,7 @@ begin
   Application.CreateForm(TFrmUsuario, FrmUsuario);
   Application.CreateForm(TFrmPessoa, FrmPessoa);
   Application.CreateForm(TFrmProdutos, FrmProdutos);
+  Application.CreateForm(TFrmVenda, FrmVenda);
+  Application.CreateForm(TFrmFinaliza, FrmFinaliza);
   Application.Run;
 end.

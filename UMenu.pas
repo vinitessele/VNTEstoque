@@ -57,7 +57,7 @@ implementation
 
 {$R *.fmx}
 
-uses UDM, UUsuario, UPessoa, UProdutos;
+uses UDM, UUsuario, UPessoa, UProdutos, UVenda;
 
 procedure TFrmMenu.btnMenuClick(Sender: TObject);
 begin
@@ -107,6 +107,9 @@ end;
 procedure TFrmMenu.RectVendaClick(Sender: TObject);
 begin
   MultiView1.HideMaster;
+  if not Assigned(FrmVenda) then
+    Application.CreateForm(TFrmVenda, FrmVenda);
+  FrmVenda.Show;
 end;
 
 end.

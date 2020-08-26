@@ -67,6 +67,26 @@ type
     FDQProdutosOBSERVACOES: TStringField;
     FDQProdutosCONTROLEESTOQUE: TStringField;
     tabBusca: TFDQuery;
+    FDQVenda: TFDQuery;
+    FDQVendaItens: TFDQuery;
+    FDQVendaID: TFDAutoIncField;
+    FDQVendaDATA: TDateField;
+    FDQVendaHORA: TTimeField;
+    FDQVendaVLR_TOTAL: TFMTBCDField;
+    FDQVendaID_TIPOPAGAMENTO: TIntegerField;
+    FDQVendaItensID: TIntegerField;
+    FDQVendaItensID_VENDA: TIntegerField;
+    FDQVendaItensID_PRODUTO: TIntegerField;
+    FDQVendaItensQTE_PRODUTO: TSingleField;
+    FDQVendaItensVLR_UNITARIO: TFMTBCDField;
+    FDQVendaItensVLR_TOTAL: TFMTBCDField;
+    dsVendaItens: TDataSource;
+    dsVenda: TDataSource;
+    FDQVendaID_PESSOA: TIntegerField;
+    FDQTpagamento: TFDQuery;
+    FDQTpagamentoID: TIntegerField;
+    FDQTpagamentoDESCRICAO: TStringField;
+    FDQVendaPARCELA: TIntegerField;
     procedure FDConnection1AfterConnect(Sender: TObject);
   private
     { Private declarations }
@@ -89,6 +109,10 @@ begin
   FDQEstado.Active := True;
   FDQPessoa.Active := True;
   FDQProdutos.Active := True;
+  FDQVenda.Active := True;
+  FDQVendaItens.Active := True;
+  FDQTpagamento.Active:=True;
+
 end;
 
 end.

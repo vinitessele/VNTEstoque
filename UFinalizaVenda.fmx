@@ -1,0 +1,133 @@
+object FrmFinaliza: TFrmFinaliza
+  Left = 0
+  Top = 0
+  Caption = 'Finaliza Venda'
+  ClientHeight = 149
+  ClientWidth = 458
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Rectangle3: TRectangle
+    Align = Top
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 448.000000000000000000
+    Size.Height = 36.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label5: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 448.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Finaliza Venda'
+      TabOrder = 0
+    end
+  end
+  object ComboBox1: TComboBox
+    Position.X = 139.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 161.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnExit = ComboBox1Exit
+  end
+  object RectConfirma: TRectangle
+    Align = Bottom
+    Fill.Color = claMidnightblue
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 105.000000000000000000
+    Size.Width = 448.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    OnClick = RectConfirmaClick
+    object Label9: TLabel
+      Align = Client
+      StyledSettings = [Family, Size, Style]
+      Size.Width = 448.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Finalizar<F10>'
+      TabOrder = 0
+    end
+  end
+  object Label1: TLabel
+    Position.X = 16.000000000000000000
+    Position.Y = 48.000000000000000000
+    Text = 'Valor Total'
+    TabOrder = 11
+  end
+  object EditValor: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Position.X = 16.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 121.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Label2: TLabel
+    Position.X = 139.000000000000000000
+    Position.Y = 48.000000000000000000
+    Text = 'Forma de Pagamento'
+    TabOrder = 8
+  end
+  object Label3: TLabel
+    Position.X = 304.000000000000000000
+    Position.Y = 48.000000000000000000
+    Text = 'N'#176' Parcelas'
+    TabOrder = 10
+  end
+  object EditParcelas: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    Position.X = 304.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Label4: TLabel
+    Position.X = 371.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 78.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Vlr Parcela'
+    TabOrder = 9
+  end
+  object EditVlrParcela: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 371.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 73.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+end

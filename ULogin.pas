@@ -18,6 +18,7 @@ type
     btnOK: TSpeedButton;
     BtnConcelar: TSpeedButton;
     RectExibi: TRectangle;
+    StyleBook1: TStyleBook;
     procedure btnOKClick(Sender: TObject);
     procedure RectEscondeClick(Sender: TObject);
     procedure RectExibiClick(Sender: TObject);

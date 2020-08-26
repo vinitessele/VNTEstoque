@@ -96,8 +96,10 @@ begin
   uf := dadoscep.uf;
   dadoscep.Free;
 
-  dm.FDQCidade.Locate('nome', cidade, []);
-  EditCidade.Tag := dm.FDQCidadeID.AsInteger;
+  dm.tabBusca.Open('select c.id, c.nome, e.uf from cidade c ' +
+    ' inner join estado e on e.id=c.id_estado ' + ' where c.nome = ' +
+    QuotedStr(cidade) + ' and  e.uf=' + QuotedStr(uf));
+  EditCidade.Tag := dm.tabBusca.FieldByName('id').AsInteger;
 
   EditEndereco.Text := endereco;
   EditBairro.Text := bairro;
@@ -126,31 +128,43 @@ begin
   dm.tabBusca.Open('SELECT ID,Nome,Rua,CpfCnpj FROM pessoa ' + ' WHERE ' +
     ' Nome LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%') +
     ' OR CpfCnpj LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%'));
-
+  ListBox1.items.BeginUpdate;
   while not dm.tabBusca.Eof do
   begin
-    ListBox1.items.Add(dm.tabBusca.FieldByName('Nome').AsString);
+    ListBox1.items.Add(dm.tabBusca.FieldByName('id').AsString+' - '+dm.tabBusca.FieldByName('Nome').AsString);
     dm.tabBusca.Next;
   end;
-
+  ListBox1.items.EndUpdate;
 end;
 
 procedure TFrmPessoa.ListBox1DblClick(Sender: TObject);
+var
+  nome: string;
 begin
   inherited;
-  dm.FDQPessoa.Locate('nome', ListBox1.items[ListBox1.ItemIndex], []);
+  nome := ListBox1.items[ListBox1.ItemIndex];
 
-  EditNome.Text := dm.FDQPessoaNOME.AsString;
-  EditFantasia.Text := dm.FDQPessoaNOMEFANTASIA.AsString;
-  EditCPFCNPJ.Text := dm.FDQPessoaCPFCNPJ.AsString;
-  EditRgIE.Text := dm.FDQPessoaIERG.AsString;
-  EditEndereco.Text := dm.FDQPessoaRUA.AsString;
-  EditNumero.Text := dm.FDQPessoaNUMERO.AsString;
-  EditBairro.Text := dm.FDQPessoaBAIRRO.AsString;
-  EditCep.Text := dm.FDQPessoaCEP.AsString;
-  EditCelular.Text := dm.FDQPessoaTELEFONE1.AsString;
-  EditEmail.Text := dm.FDQPessoaEMAIL1.AsString;
-  EditDtNascimento.Text := dm.FDQPessoaDATANASC.AsString;
+  dm.tabBusca.Open
+    ('select p.id, p.nome,  p.nomefantasia, p.cpfcnpj, p.ierg, p.rua, p.numero, p.bairro, p.cep, '
+    + ' p.datanasc, p.complemento, p.sexo, p.telefone1, p.email1, p.img, p.observacoes, '
+    + ' c.nome as cidade ,e.uf from pessoa p ' +
+    ' inner join cidade c on p.id_cidade = c.id ' +
+    ' inner join estado e on c.id_estado = e.id ' + ' and p.nome  = ' +
+    QuotedStr(nome));
+  EditId.Text := dm.tabBusca.FieldByName('id').AsString;
+  EditNome.Text := dm.tabBusca.FieldByName('Nome').AsString;
+  EditFantasia.Text := dm.tabBusca.FieldByName('nomefantasia').AsString;
+  EditCPFCNPJ.Text := dm.tabBusca.FieldByName('cpfcnpj').AsString;
+  EditRgIE.Text := dm.tabBusca.FieldByName('ierg').AsString;
+  EditEndereco.Text := dm.tabBusca.FieldByName('rua').AsString;
+  EditNumero.Text := dm.tabBusca.FieldByName('numero').AsString;
+  EditBairro.Text := dm.tabBusca.FieldByName('bairro').AsString;
+  EditCidade.Text := dm.tabBusca.FieldByName('cidade').AsString + '/' +
+    dm.tabBusca.FieldByName('uf').AsString;
+  EditCep.Text := dm.tabBusca.FieldByName('cep').AsString;
+  EditCelular.Text := dm.tabBusca.FieldByName('telefone1').AsString;
+  EditEmail.Text := dm.tabBusca.FieldByName('email1').AsString;
+  EditDtNascimento.Text := dm.tabBusca.FieldByName('datanasc').AsString;
 
   ListBox1.Visible := false;
   {

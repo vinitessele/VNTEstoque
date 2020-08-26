@@ -230,8 +230,8 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'id'
     SQL.Strings = (
       'select * from produto')
-    Left = 232
-    Top = 184
+    Left = 104
+    Top = 200
     object FDQProdutosID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -311,5 +311,120 @@ object DM: TDM
     Connection = FDConnection1
     Left = 452
     Top = 160
+  end
+  object FDQVenda: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_venda'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from venda')
+    Left = 32
+    Top = 312
+    object FDQVendaID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object FDQVendaDATA: TDateField
+      FieldName = 'DATA'
+      Origin = '"DATA"'
+    end
+    object FDQVendaHORA: TTimeField
+      FieldName = 'HORA'
+      Origin = 'HORA'
+    end
+    object FDQVendaVLR_TOTAL: TFMTBCDField
+      FieldName = 'VLR_TOTAL'
+      Origin = 'VLR_TOTAL'
+      Precision = 18
+      Size = 2
+    end
+    object FDQVendaID_TIPOPAGAMENTO: TIntegerField
+      FieldName = 'ID_TIPOPAGAMENTO'
+      Origin = 'ID_TIPOPAGAMENTO'
+    end
+    object FDQVendaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      Origin = 'ID_PESSOA'
+    end
+    object FDQVendaPARCELA: TIntegerField
+      FieldName = 'PARCELA'
+      Origin = 'PARCELA'
+    end
+  end
+  object FDQVendaItens: TFDQuery
+    IndexFieldNames = 'ID_VENDA'
+    MasterSource = dsVenda
+    MasterFields = 'ID'
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_vendaItem'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from venda_item')
+    Left = 144
+    Top = 312
+    object FDQVendaItensID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQVendaItensID_VENDA: TIntegerField
+      FieldName = 'ID_VENDA'
+      Origin = 'ID_VENDA'
+      Required = True
+    end
+    object FDQVendaItensID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+    end
+    object FDQVendaItensQTE_PRODUTO: TSingleField
+      FieldName = 'QTE_PRODUTO'
+      Origin = 'QTE_PRODUTO'
+    end
+    object FDQVendaItensVLR_UNITARIO: TFMTBCDField
+      FieldName = 'VLR_UNITARIO'
+      Origin = 'VLR_UNITARIO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQVendaItensVLR_TOTAL: TFMTBCDField
+      FieldName = 'VLR_TOTAL'
+      Origin = 'VLR_TOTAL'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object dsVendaItens: TDataSource
+    DataSet = FDQVendaItens
+    Left = 136
+    Top = 344
+  end
+  object dsVenda: TDataSource
+    DataSet = FDQVenda
+    Left = 72
+    Top = 344
+  end
+  object FDQTpagamento: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select *from tipo_pagamento')
+    Left = 192
+    Top = 216
+    object FDQTpagamentoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQTpagamentoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 100
+    end
   end
 end
