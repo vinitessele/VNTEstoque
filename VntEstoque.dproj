@@ -438,6 +438,14 @@
             <Form>FrmFinaliza</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="UCaixa.pas">
+            <Form>FrmCaixa</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="UDespesas.pas">
+            <Form>FrmDespesas</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

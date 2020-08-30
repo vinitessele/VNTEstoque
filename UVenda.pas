@@ -59,6 +59,8 @@ type
     procedure Insert_Venda;
     procedure LimpaCampos;
     procedure FinalizaVenda;
+    procedure CancelVenda;
+    procedure AtualizaVenda;
     { Private declarations }
   public
     { Public declarations }
@@ -163,11 +165,16 @@ begin
         GroupBox1.Enabled := True;
         Insert_Venda;
       end;
+    vkF3:
+      begin
+        CancelVenda;
+      end;
     vkReturn:
       ShowMessage('Enter');
     vkF8:
       begin
         Insert_ItemVendas;
+        AtualizaVenda;
       end;
     vkF10:
       begin
@@ -213,37 +220,13 @@ end;
 
 procedure TFrmVenda.RectCancelaClick(Sender: TObject);
 begin
-  dm.FDQVendaItens.Cancel;
-  dm.FDQVenda.Cancel;
-  dm.FDConnection1.RollbackRetaining;
+  CancelVenda;
 end;
 
 procedure TFrmVenda.RectConfirmaClick(Sender: TObject);
 begin
   Insert_ItemVendas;
-
-  dm.tabBusca.Open('select vi.id, p.descricao,vi.vlr_total from venda_item vi '
-    + ' inner join produto p on vi.id_produto=p.id' + ' where id_venda = ' +
-    QuotedStr(IntToStr(IdVenda)));
-
-  ListBoxItens.items.BeginUpdate;
-  ListBoxItens.Clear;
-  while not dm.tabBusca.Eof do
-  begin
-    ListBoxItens.items.Add(dm.tabBusca.FieldByName('id').AsString + '-' +
-      dm.tabBusca.FieldByName('descricao').AsString + '-' +
-      dm.tabBusca.FieldByName('vlr_total').AsString);
-    dm.tabBusca.Next;
-  end;
-  ListBoxItens.items.EndUpdate;
-
-  dm.tabBusca.Open
-    ('select sum(vlr_total)as valor from venda_item where id_venda= ' +
-    QuotedStr(IntToStr(IdVenda)));
-
-  vl_total := dm.tabBusca.FieldByName('valor').AsFloat;
-  Label10.Text := FormatFloat('R$ #,##0.00',
-    dm.tabBusca.FieldByName('valor').AsFloat);
+  AtualizaVenda;
 end;
 
 procedure TFrmVenda.Insert_ItemVendas;
@@ -265,11 +248,26 @@ end;
 
 procedure TFrmVenda.Insert_Venda;
 begin
-  dm.FDQVenda.Append;
-  dm.FDQVendaDATA.AsDateTime := date;
-  dm.FDQVendaHORA.AsDateTime := Time;
-  dm.FDQVenda.Post;
-  dm.FDConnection1.CommitRetaining;
+  dm.tabBusca.Open
+    ('select id, status_caixa, data_abertura from caixa where status_caixa =''A'' ');
+
+  if dm.tabBusca.RecordCount > 0 then
+  begin
+    dm.FDQVenda.Append;
+    dm.FDQVendaDATA.AsDateTime := date;
+    dm.FDQVendaHORA.AsDateTime := Time;
+    dm.FDQVendaID_CAIXA.AsInteger := dm.tabBusca.FieldByName('id').AsInteger;
+    dm.FDQVenda.Post;
+    dm.FDConnection1.CommitRetaining;
+  end
+  else
+  begin
+    MessageDlg('O caixa deve estar aberto para efetuar a venda',
+      TMsgDlgType.mtwarning, [TMsgDlgBtn.mbok], 0);
+    LimpaCampos;
+    Exit;
+  end;
+
 end;
 
 procedure TFrmVenda.LimpaCampos;
@@ -278,13 +276,50 @@ begin
   EditCodigo.Text := EmptyStr;
   EditVlUnitario.Text := EmptyStr;
   Label11.Text := EmptyStr;
+  Label10.Text := EmptyStr;
+  Label11.Text := EmptyStr;
 end;
 
 procedure TFrmVenda.FinalizaVenda;
 begin
-   if not Assigned(FrmFinaliza) then
+  if not Assigned(FrmFinaliza) then
     Application.CreateForm(TFrmFinaliza, FrmFinaliza);
   FrmFinaliza.Show;
+  LimpaCampos;
+  GroupBox1.Enabled := False;
+  EditCodigo.SetFocus;
+end;
+
+procedure TFrmVenda.CancelVenda;
+begin
+  dm.FDQVendaItens.Cancel;
+  dm.FDQVenda.Cancel;
+  dm.FDConnection1.RollbackRetaining;
+  GroupBox1.Enabled := False;
+  LimpaCampos;
+end;
+
+procedure TFrmVenda.AtualizaVenda;
+begin
+  dm.tabBusca.Open('select vi.id, p.descricao,vi.vlr_total from venda_item vi '
+    + ' inner join produto p on vi.id_produto=p.id' + ' where id_venda = ' +
+    QuotedStr(IntToStr(IdVenda)));
+  ListBoxItens.items.BeginUpdate;
+  ListBoxItens.Clear;
+  while not dm.tabBusca.Eof do
+  begin
+    ListBoxItens.items.Add(dm.tabBusca.FieldByName('id').AsString + '-' +
+      dm.tabBusca.FieldByName('descricao').AsString + '-' +
+      dm.tabBusca.FieldByName('vlr_total').AsString);
+    dm.tabBusca.Next;
+  end;
+  ListBoxItens.items.EndUpdate;
+  dm.tabBusca.Open
+    ('select sum(vlr_total)as valor from venda_item where id_venda= ' +
+    QuotedStr(IntToStr(IdVenda)));
+  vl_total := dm.tabBusca.FieldByName('valor').AsFloat;
+  Label10.Text := FormatFloat('R$ #,##0.00',
+    dm.tabBusca.FieldByName('valor').AsFloat);
 end;
 
 end.

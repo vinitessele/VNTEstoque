@@ -87,6 +87,46 @@ type
     FDQTpagamentoID: TIntegerField;
     FDQTpagamentoDESCRICAO: TStringField;
     FDQVendaPARCELA: TIntegerField;
+    FDQCaixa: TFDQuery;
+    FDQconta: TFDQuery;
+    FDQCaixaID: TIntegerField;
+    FDQCaixaDATA_ABERTURA: TDateField;
+    FDQCaixaDATA_FECHAMENTO: TDateField;
+    FDQCaixaHORA_ABERTURA: TTimeField;
+    FDQCaixaHORA_FECHAMENTO: TTimeField;
+    FDQcontaID: TIntegerField;
+    FDQcontaID_PESSOA: TIntegerField;
+    FDQcontaDOCUMENTO: TIntegerField;
+    FDQcontaDT_RECORD: TDateField;
+    FDQcontaDT_VENDA: TDateField;
+    FDQcontaDT_PAGAMENTO: TDateField;
+    FDQcontaVLR_TOTAL: TFMTBCDField;
+    FDQcontaVLR_PARCELA: TFMTBCDField;
+    FDQcontaVLR_PAGAMENTO: TFMTBCDField;
+    FDQcontaVLR_SALDO: TFMTBCDField;
+    FDQcontaTP_CONTA: TStringField;
+    FDQcontaNR_PARCELA: TIntegerField;
+    FDQcontaDT_VENCIMENTOPARCELA: TDateField;
+    FDQcontaVLR_ENTRADA: TFMTBCDField;
+    FDQCaixaSTATUS_CAIXA: TStringField;
+    FDQVendaID_CAIXA: TIntegerField;
+    FDQReceitas: TFDQuery;
+    FDQDespesas: TFDQuery;
+    FDQSumReceitas: TFDQuery;
+    FDQSumReceitasSUM: TFMTBCDField;
+    FDQReceitasID: TIntegerField;
+    FDQReceitasDT_RECORD: TDateField;
+    FDQReceitasDT_PAGAMENTO: TDateField;
+    FDQReceitasVLR_TOTAL: TFMTBCDField;
+    FDQReceitasID_PESSOA: TIntegerField;
+    FDQReceitasNOME: TStringField;
+    FDQcontaID_CAIXA: TIntegerField;
+    FDQcontaSTATUS_CONTA: TStringField;
+    FDQReceitasVLR_PAGAMENTO: TFMTBCDField;
+    FDQCaixaVLR_ABERTURA: TFMTBCDField;
+    FDQCaixaVLR_ENTRADA: TFMTBCDField;
+    FDQCaixaVLR_SAIDA: TFMTBCDField;
+    FDQCaixaVLR_FECHAMENTO: TFMTBCDField;
     procedure FDConnection1AfterConnect(Sender: TObject);
   private
     { Private declarations }
@@ -111,8 +151,11 @@ begin
   FDQProdutos.Active := True;
   FDQVenda.Active := True;
   FDQVendaItens.Active := True;
-  FDQTpagamento.Active:=True;
-
+  FDQTpagamento.Active := True;
+  FDQconta.Active := True;
+  FDQCaixa.Active := True;
+  FDQReceitas.Active := True;
+  FDQSumReceitas.Active := True;
 end;
 
 end.

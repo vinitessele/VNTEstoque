@@ -3,8 +3,9 @@ object FrmFinaliza: TFrmFinaliza
   Top = 0
   Caption = 'Finaliza Venda'
   ClientHeight = 149
-  ClientWidth = 458
+  ClientWidth = 527
   Fill.Kind = Solid
+  Position = DesktopCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -20,7 +21,7 @@ object FrmFinaliza: TFrmFinaliza
     Margins.Bottom = 5.000000000000000000
     Position.X = 5.000000000000000000
     Position.Y = 5.000000000000000000
-    Size.Width = 448.000000000000000000
+    Size.Width = 517.000000000000000000
     Size.Height = 36.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
@@ -29,7 +30,7 @@ object FrmFinaliza: TFrmFinaliza
     object Label5: TLabel
       Align = Client
       StyledSettings = [Family, Style]
-      Size.Width = 448.000000000000000000
+      Size.Width = 517.000000000000000000
       Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 20.000000000000000000
@@ -57,7 +58,7 @@ object FrmFinaliza: TFrmFinaliza
     Margins.Bottom = 5.000000000000000000
     Position.X = 5.000000000000000000
     Position.Y = 105.000000000000000000
-    Size.Width = 448.000000000000000000
+    Size.Width = 517.000000000000000000
     Size.Height = 39.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
@@ -67,7 +68,7 @@ object FrmFinaliza: TFrmFinaliza
     object Label9: TLabel
       Align = Client
       StyledSettings = [Family, Size, Style]
-      Size.Width = 448.000000000000000000
+      Size.Width = 517.000000000000000000
       Size.Height = 39.000000000000000000
       Size.PlatformDefault = False
       TextSettings.FontColor = claWhite
@@ -80,11 +81,11 @@ object FrmFinaliza: TFrmFinaliza
     Position.X = 16.000000000000000000
     Position.Y = 48.000000000000000000
     Text = 'Valor Total'
-    TabOrder = 11
+    TabOrder = 9
   end
   object EditValor: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 4
+    TabOrder = 0
     Position.X = 16.000000000000000000
     Position.Y = 64.000000000000000000
     Size.Width = 121.000000000000000000
@@ -95,39 +96,68 @@ object FrmFinaliza: TFrmFinaliza
     Position.X = 139.000000000000000000
     Position.Y = 48.000000000000000000
     Text = 'Forma de Pagamento'
-    TabOrder = 8
+    TabOrder = 5
   end
   object Label3: TLabel
-    Position.X = 304.000000000000000000
+    Position.X = 371.000000000000000000
     Position.Y = 48.000000000000000000
+    Size.Width = 73.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
     Text = 'N'#176' Parcelas'
-    TabOrder = 10
+    Visible = False
+    TabOrder = 8
   end
   object EditParcelas: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 3
-    Position.X = 304.000000000000000000
+    Position.X = 371.000000000000000000
     Position.Y = 64.000000000000000000
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+    Visible = False
   end
   object Label4: TLabel
-    Position.X = 371.000000000000000000
+    Position.X = 438.000000000000000000
     Position.Y = 48.000000000000000000
     Size.Width = 78.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Vlr Parcela'
-    TabOrder = 9
+    Visible = False
+    TabOrder = 6
   end
   object EditVlrParcela: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 2
-    Position.X = 371.000000000000000000
+    TabOrder = 4
+    Position.X = 438.000000000000000000
     Position.Y = 64.000000000000000000
     Size.Width = 73.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+    Visible = False
+    OnEnter = EditVlrParcelaEnter
+  end
+  object Label6: TLabel
+    Position.X = 304.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Vlr Entrada'
+    Visible = False
+    TabOrder = 7
+  end
+  object EditValorEntrada: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 304.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    OnTyping = EditValorEntradaTyping
   end
 end

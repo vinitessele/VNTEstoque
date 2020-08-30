@@ -36,6 +36,9 @@ type
     Image7: TImage;
     Label7: TLabel;
     StatusBar1: TStatusBar;
+    RectCaixa: TRectangle;
+    Label8: TLabel;
+    Image8: TImage;
     procedure btnMenuClick(Sender: TObject);
     procedure RectSairClick(Sender: TObject);
     procedure RectCadastrosCliforClick(Sender: TObject);
@@ -44,6 +47,7 @@ type
     procedure RectLanctoEntradaClick(Sender: TObject);
     procedure RectProdutosClick(Sender: TObject);
     procedure RectVendaClick(Sender: TObject);
+    procedure RectCaixaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,7 +61,7 @@ implementation
 
 {$R *.fmx}
 
-uses UDM, UUsuario, UPessoa, UProdutos, UVenda;
+uses UDM, UUsuario, UPessoa, UProdutos, UVenda, UCaixa;
 
 procedure TFrmMenu.btnMenuClick(Sender: TObject);
 begin
@@ -70,6 +74,14 @@ begin
   if not Assigned(FrmPessoa) then
     Application.CreateForm(TFrmPessoa, FrmPessoa);
   FrmPessoa.Show;
+end;
+
+procedure TFrmMenu.RectCaixaClick(Sender: TObject);
+begin
+  MultiView1.HideMaster;
+  if not Assigned(FrmCaixa) then
+    Application.CreateForm(TFrmCaixa, FrmCaixa);
+  FrmCaixa.Show;
 end;
 
 procedure TFrmMenu.RectConfiguracaoClick(Sender: TObject);
