@@ -61,7 +61,7 @@ implementation
 
 {$R *.fmx}
 
-uses UDM, UUsuario, UPessoa, UProdutos, UVenda, UCaixa;
+uses UDM, UUsuario, UPessoa, UProdutos, UVenda, UCaixa, UDespesas;
 
 procedure TFrmMenu.btnMenuClick(Sender: TObject);
 begin
@@ -95,6 +95,9 @@ end;
 procedure TFrmMenu.RectLanctoDespesasClick(Sender: TObject);
 begin
   MultiView1.HideMaster;
+  if not Assigned(FrmDespesas) then
+    Application.CreateForm(TFrmDespesas, FrmDespesas);
+  FrmDespesas.Show;
 end;
 
 procedure TFrmMenu.RectLanctoEntradaClick(Sender: TObject);

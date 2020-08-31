@@ -127,6 +127,22 @@ type
     FDQCaixaVLR_ENTRADA: TFMTBCDField;
     FDQCaixaVLR_SAIDA: TFMTBCDField;
     FDQCaixaVLR_FECHAMENTO: TFMTBCDField;
+    FDQDespesasID: TFDAutoIncField;
+    FDQDespesasDESCRICAO: TStringField;
+    FDQDespesasDATA: TDateField;
+    FDQDespesasVALOR: TFMTBCDField;
+    FDQDespesasID_PESSOA: TIntegerField;
+    FDQDespesasDOCUMENTO: TIntegerField;
+    FDQcontaID_MOVIMENTACAO: TIntegerField;
+    FDQDespesasCaixa: TFDQuery;
+    FDQSumDespesas: TFDQuery;
+    FDQDespesasCaixaID: TFDAutoIncField;
+    FDQDespesasCaixaDT_RECORD: TDateField;
+    FDQDespesasCaixaDT_PAGAMENTO: TDateField;
+    FDQDespesasCaixaVLR_TOTAL: TFMTBCDField;
+    FDQDespesasCaixaID_PESSOA: TIntegerField;
+    FDQDespesasCaixaVLR_PAGAMENTO: TFMTBCDField;
+    FDQSumDespesasSUM: TFMTBCDField;
     procedure FDConnection1AfterConnect(Sender: TObject);
   private
     { Private declarations }
@@ -156,6 +172,9 @@ begin
   FDQCaixa.Active := True;
   FDQReceitas.Active := True;
   FDQSumReceitas.Active := True;
+  FDQDespesas.Active := True;
+  FDQDespesasCaixa.Active := True;
+  FDQSumDespesas.Active := True;
 end;
 
 end.

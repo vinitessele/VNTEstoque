@@ -11,7 +11,7 @@ Coordinates=213,53,110,33
 Coordinates=213,105,161,33
 
 [FDQUsuario]
-Coordinates=10,10,91,141
+Coordinates=10,467,91,141
 
 [FDConnection1]
 Coordinates=110,53,90,33
@@ -44,13 +44,13 @@ Coordinates=411,209,101,33
 Coordinates=412,261,131,33
 
 [FDQCidade]
-Coordinates=41,170,70,105
+Coordinates=111,467,70,105
 
 [FDQProdutosDATACADASTRO]
 Coordinates=412,313,168,33
 
 [FDQPessoa]
-Coordinates=120,1,91,447
+Coordinates=10,10,91,447
 
 [FDQPessoaDATAEXCLUSAO]
 Coordinates=412,365,157,33
@@ -74,7 +74,7 @@ Coordinates=412,573,127,33
 Coordinates=393,622,143,33
 
 [FDQEstado]
-Coordinates=249,479,70,105
+Coordinates=191,467,70,105
 
 [FDQProdutosUNIDADEMEDIA]
 Coordinates=224,622,161,33
@@ -125,7 +125,7 @@ Coordinates=848,1,97,33
 Coordinates=618,674,160,33
 
 [FDQProdutos]
-Coordinates=230,157,123,303
+Coordinates=263,10,123,303
 
 [FDQProdutosCONTROLEESTOQUE]
 Coordinates=848,53,189,33
@@ -167,7 +167,7 @@ Coordinates=848,417,97,33
 Coordinates=651,726,158,33
 
 [FDQVendaItens]
-Coordinates=150,486,91,159
+Coordinates=748,10,91,159
 
 [FDQVendaItensQTE_PRODUTO]
 Coordinates=848,469,169,33
@@ -188,7 +188,7 @@ Coordinates=848,521,167,33
 Coordinates=848,573,174,33
 
 [FDQVenda]
-Coordinates=391,1,112,177
+Coordinates=519,10,112,195
 
 [FDQVendaID]
 Coordinates=424,764,77,33
@@ -197,10 +197,10 @@ Coordinates=424,764,77,33
 Coordinates=255,764,159,33
 
 [FDQTpagamento]
-Coordinates=21,170,97,87
+Coordinates=271,467,97,87
 
 [tabBusca]
-Coordinates=249,105,60,51
+Coordinates=582,467,60,51
 
 [FDQVendaDATA]
 Coordinates=848,625,95,33
@@ -227,13 +227,13 @@ Coordinates=1075,1,116,33
 Coordinates=1075,53,119,33
 
 [FDQReceitas]
-Coordinates=668,816,112,195
+Coordinates=641,10,97,177
 
 [FDQcontaVLR_TOTAL]
 Coordinates=371,853,124,33
 
 [FDQCaixa]
-Coordinates=680,1030,113,231
+Coordinates=396,10,113,231
 
 [FDQcontaID_PESSOA]
 Coordinates=242,853,122,33
@@ -248,7 +248,7 @@ Coordinates=113,853,127,33
 Coordinates=1075,209,142,33
 
 [FDQconta]
-Coordinates=500,816,142,303
+Coordinates=111,10,142,357
 
 [FDQcontaDT_PAGAMENTO]
 Coordinates=1075,365,149,33
@@ -281,7 +281,7 @@ Coordinates=1075,937,157,33
 Coordinates=1075,989,73,33
 
 [FDQDespesas]
-Coordinates=17,764,84,51
+Coordinates=488,467,84,159
 
 [FDQCaixaDATA_ABERTURA]
 Coordinates=1075,1041,155,33
@@ -299,5 +299,95 @@ Coordinates=1075,1093,125,33
 Coordinates=531,1157,140,33
 
 []
-Coordinates=926,1157,147,33
+Coordinates=299,332,87,33
+
+[FDQReceitasDT_PAGAMENTO]
+Coordinates=1075,105,164,33
+
+[FDQcontaID_CAIXA]
+Coordinates=1075,261,111,33
+
+[FDQReceitasDT_RECORD]
+Coordinates=848,833,142,33
+
+[FDQSumReceitasSUM]
+Coordinates=1075,313,123,33
+
+[FDQSumReceitas]
+Coordinates=378,467,100,69
+
+[FDQReceitasNOME]
+Coordinates=1075,469,109,33
+
+[FDQReceitasID_PESSOA]
+Coordinates=1075,573,137,33
+
+[FDQReceitasVLR_PAGAMENTO]
+Coordinates=1075,625,171,33
+
+[FDQReceitasVLR_TOTAL]
+Coordinates=1075,781,139,33
+
+[FDQCaixaVLR_FECHAMENTO]
+Coordinates=1314,157,162,33
+
+[FDQCaixaVLR_SAIDA]
+Coordinates=1075,1145,121,33
+
+[FDQCaixaVLR_ABERTURA]
+Coordinates=1056,1193,147,33
+
+[FDQCaixaVLR_ENTRADA]
+Coordinates=907,1193,140,33
+
+[FDQReceitasID]
+Coordinates=24,853,88,33
+
+[FDQcontaSTATUS_CONTA]
+Coordinates=531,1193,147,33
+
+[FDQDespesasDOCUMENTO]
+Coordinates=372,1193,151,33
+
+[FDQDespesasVALOR]
+Coordinates=243,1193,120,33
+
+[FDQcontaID_MOVIMENTACAO]
+Coordinates=1314,209,165,33
+
+[FDQDespesasID_PESSOA]
+Coordinates=94,1193,143,33
+
+[FDQDespesasDATA]
+Coordinates=1314,261,112,33
+
+[FDQDespesasID]
+Coordinates=808,1193,94,33
+
+[FDQDespesasDESCRICAO]
+Coordinates=1314,313,145,33
+
+[FDQDespesasCaixa]
+Coordinates=299,573,111,159
+
+[FDQSumDespesas]
+Coordinates=120,386,106,69
+
+[FDQDespesasCaixaDT_RECORD]
+Coordinates=272,332,175,33
+
+[FDQDespesasCaixaID_PESSOA]
+Coordinates=272,384,170,33
+
+[FDQDespesasCaixaVLR_PAGAMENTO]
+Coordinates=547,224,204,33
+
+[FDQDespesasCaixaID]
+Coordinates=516,276,121,33
+
+[FDQDespesasCaixaDT_PAGAMENTO]
+Coordinates=547,328,198,33
+
+[FDQDespesasCaixaVLR_TOTAL]
+Coordinates=547,380,172,33
 

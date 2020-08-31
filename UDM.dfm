@@ -494,6 +494,7 @@ object DM: TDM
     end
   end
   object FDQconta: TFDQuery
+    Active = True
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvGeneratorName]
     UpdateOptions.GeneratorName = 'gen_conta'
@@ -582,6 +583,10 @@ object DM: TDM
       FixedChar = True
       Size = 1
     end
+    object FDQcontaID_MOVIMENTACAO: TIntegerField
+      FieldName = 'ID_MOVIMENTACAO'
+      Origin = 'ID_MOVIMENTACAO'
+    end
   end
   object FDQReceitas: TFDQuery
     Connection = FDConnection1
@@ -597,7 +602,8 @@ object DM: TDM
       'from conta c'
       'inner join pessoa p on p.id = c.id_pessoa'
       'where c.id_caixa = :caixa'
-      'and status_conta ='#39'L'#39)
+      'and status_conta ='#39'L'#39
+      'and tp_conta ='#39'R'#39)
     Left = 32
     Top = 272
     ParamData = <
@@ -648,8 +654,43 @@ object DM: TDM
   end
   object FDQDespesas: TFDQuery
     Connection = FDConnection1
-    Left = 136
-    Top = 144
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_despesa'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from despesa')
+    Left = 96
+    Top = 136
+    object FDQDespesasID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object FDQDespesasDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Required = True
+      Size = 60
+    end
+    object FDQDespesasDATA: TDateField
+      FieldName = 'DATA'
+      Origin = '"DATA"'
+    end
+    object FDQDespesasVALOR: TFMTBCDField
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      Precision = 18
+      Size = 2
+    end
+    object FDQDespesasID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      Origin = 'ID_PESSOA'
+    end
+    object FDQDespesasDOCUMENTO: TIntegerField
+      FieldName = 'DOCUMENTO'
+      Origin = 'DOCUMENTO'
+    end
   end
   object FDQSumReceitas: TFDQuery
     Connection = FDConnection1
@@ -658,7 +699,8 @@ object DM: TDM
       'sum(vlr_pagamento) '
       'from conta'
       'where id_caixa = :caixa'
-      'and status_conta ='#39'L'#39)
+      'and status_conta ='#39'L'#39
+      'and tp_conta ='#39'R'#39)
     Left = 96
     Top = 272
     ParamData = <
@@ -669,6 +711,92 @@ object DM: TDM
         Value = 23
       end>
     object FDQSumReceitasSUM: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'SUM'
+      Origin = '"SUM"'
+      ProviderFlags = []
+      ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+  end
+  object FDQDespesasCaixa: TFDQuery
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_despesa'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select '
+      'c.id, '
+      'c.dt_record,  '
+      'c.dt_pagamento, '
+      'c.vlr_total, '
+      'c.id_pessoa,'
+      'c.documento,'
+      'c.vlr_pagamento '
+      'from conta c'
+      'where c.id_caixa = :caixa'
+      'and status_conta ='#39'L'#39
+      'and tp_conta ='#39'D'#39)
+    Left = 208
+    Top = 144
+    ParamData = <
+      item
+        Name = 'CAIXA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 25
+      end>
+    object FDQDespesasCaixaID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object FDQDespesasCaixaDT_RECORD: TDateField
+      FieldName = 'DT_RECORD'
+      Origin = 'DT_RECORD'
+    end
+    object FDQDespesasCaixaDT_PAGAMENTO: TDateField
+      FieldName = 'DT_PAGAMENTO'
+      Origin = 'DT_PAGAMENTO'
+    end
+    object FDQDespesasCaixaVLR_TOTAL: TFMTBCDField
+      FieldName = 'VLR_TOTAL'
+      Origin = 'VLR_TOTAL'
+      Precision = 18
+      Size = 2
+    end
+    object FDQDespesasCaixaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      Origin = 'ID_PESSOA'
+    end
+    object FDQDespesasCaixaVLR_PAGAMENTO: TFMTBCDField
+      FieldName = 'VLR_PAGAMENTO'
+      Origin = 'VLR_PAGAMENTO'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object FDQSumDespesas: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select '
+      'sum(vlr_pagamento) '
+      'from conta'
+      'where id_caixa = :caixa'
+      'and status_conta ='#39'L'#39
+      'and tp_conta ='#39'D'#39)
+    Left = 280
+    Top = 144
+    ParamData = <
+      item
+        Name = 'CAIXA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 23
+      end>
+    object FDQSumDespesasSUM: TFMTBCDField
       AutoGenerateValue = arDefault
       FieldName = 'SUM'
       Origin = '"SUM"'

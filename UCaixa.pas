@@ -44,6 +44,8 @@ type
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     BindingsList1: TBindingsList;
     StyleBook1: TStyleBook;
+    BindSourceDB2: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
     procedure EditVlrAberturaTyping(Sender: TObject);
     procedure RectNovoClick(Sender: TObject);
     procedure RectSalvarClick(Sender: TObject);
@@ -157,6 +159,16 @@ begin
     dm.FDQSumReceitas.Open();
 
     EditReceita.Text := dm.FDQSumReceitasSUM.AsString;
+
+    dm.FDQDespesasCaixa.Close;
+    dm.FDQDespesasCaixa.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
+    dm.FDQDespesasCaixa.Open();
+
+    dm.FDQSumDespesas.Close;
+    dm.FDQSumDespesas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
+    dm.FDQSumDespesas.Open();
+
+    EditDespesas.Text := dm.FDQSumDespesasSum.AsString;
 
     EditDataAbertura.Text := dm.tabBusca.FieldByName('data_abertura').AsString;
     EditVlrAbertura.Text := dm.tabBusca.FieldByName('vlr_abertura').AsString;

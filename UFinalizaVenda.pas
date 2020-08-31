@@ -151,6 +151,7 @@ begin
     if EditValorEntrada.Text <> '' then
     begin
       dm.FDQconta.Append;
+      dm.FDQcontaID_MOVIMENTACAO.AsInteger := dm.FDQVendaID.AsInteger;
       dm.FDQcontaID_PESSOA.AsInteger := dm.FDQVendaID_PESSOA.AsInteger;
       dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQVendaID.AsInteger;
       dm.FDQcontaDT_RECORD.AsDateTime := date;
