@@ -1,154 +1,148 @@
 ﻿[DM.tabBusca]
-Coordinates=171,878,79,51
+Coordinates=194,1050,91,58
 
 [GroupBox2]
-Coordinates=235,794,70,51
+Coordinates=10,1050,79,58
 
 [DM.dsVendaItens]
-Coordinates=136,658,100,33
+Coordinates=136,658,116,36
 
 [DM.FDQVendaItens]
-Coordinates=10,578,109,159
+Coordinates=519,578,130,190
 
 [DM.FDQReceitas]
-Coordinates=874,20,97,33
+Coordinates=874,20,115,36
 Visible=False
 
 [RectpPesquisar]
-Coordinates=802,878,92,33
+Coordinates=612,1050,105,36
 
 [DM.FDQEstado]
-Coordinates=449,578,89,105
-
-[EditLocalizar]
-Coordinates=1032,794,78,51
+Coordinates=958,578,105,124
 
 [LabelStatus]
-Coordinates=673,794,72,51
+Coordinates=548,966,83,58
 
 [EditDataAbertura]
-Coordinates=1120,578,99,51
+Coordinates=657,966,113,58
 
 [DM.FDQProdutos]
-Coordinates=340,10,123,303
+Coordinates=340,10,147,366
 
 [DM.FDQVenda]
-Coordinates=980,10,112,195
+Coordinates=980,10,134,234
 
 [Label5]
-Coordinates=551,878,46,51
+Coordinates=283,966,53,58
 
 [Label2]
-Coordinates=1305,794,46,51
+Coordinates=924,966,53,58
 
 [DM.dsVenda]
-Coordinates=245,1,76,33
+Coordinates=245,1,88,36
 
 [DM.FDQUsuario]
-Coordinates=314,578,93,141
+Coordinates=823,578,109,168
 
 [DM.FDQconta]
-Coordinates=144,10,142,357
+Coordinates=144,10,170,432
 
 [EditVlrFechamento]
-Coordinates=523,794,108,51
+Coordinates=1005,816,124,58
 
 [Label6]
-Coordinates=367,878,46,51
+Coordinates=1079,966,53,58
 
 [DM.FDQCidade]
-Coordinates=580,578,89,105
+Coordinates=10,816,105,124
 
 [DM.FDQDespesas]
-Coordinates=166,578,103,159
+Coordinates=675,578,122,190
 
 [RectSalvar]
-Coordinates=1030,878,67,33
+Coordinates=416,1050,77,36
 
 [DM.FDQTpagamento]
-Coordinates=711,578,116,87
-
-[ListBox1]
-Coordinates=1140,10,116,177
+Coordinates=141,816,137,102
 
 [GridDespesas]
-Coordinates=910,794,83,105
+Coordinates=232,622,96,124
 Visible=True
 
 [ToolBar1]
-Coordinates=709,878,58,33
+Coordinates=519,1050,67,36
 
 [EditID]
-Coordinates=447,794,44,51
+Coordinates=1003,966,50,58
 
 [EditVlrAbertura]
-Coordinates=782,794,90,51
+Coordinates=796,966,102,58
 
 [GroupBox3]
-Coordinates=446,878,70,51
+Coordinates=311,1050,79,58
 
 [Label4]
-Coordinates=1041,578,46,51
+Coordinates=469,966,53,58
 
 [Label1]
-Coordinates=288,878,46,51
+Coordinates=115,1050,53,58
 
 [GroupBox1]
-Coordinates=130,794,70,51
+Coordinates=1158,966,79,58
 
 [GridReceita]
-Coordinates=871,32,72,159
+Coordinates=871,32,83,190
 Visible=True
 
 [DM.FDQPessoa]
-Coordinates=10,10,91,447
+Coordinates=10,10,108,542
 
 [DM.FDQCaixa]
-Coordinates=513,10,113,231
+Coordinates=513,10,136,278
 
 [Label3]
-Coordinates=630,878,46,51
+Coordinates=806,816,53,58
 
 [RectNovo]
-Coordinates=933,878,62,33
+Coordinates=743,1050,71,36
 
 [EditDataFechamento]
-Coordinates=10,878,116,51
+Coordinates=645,816,135,58
 
 []
-Coordinates=120,332,82,33
+Coordinates=89,966,89,58
 
 [EditDespesas]
-Coordinates=10,794,81,51
+Coordinates=885,816,94,58
 
 [Label7]
-Coordinates=1147,794,46,51
+Coordinates=204,966,53,58
 
 [DM.FDQSumReceitas]
-Coordinates=874,578,119,69
+Coordinates=478,816,141,80
 
 [Label8]
-Coordinates=1226,794,46,51
+Coordinates=10,966,53,58
 
 [EditReceita]
-Coordinates=340,794,70,51
+Coordinates=362,966,81,58
 
 [BindSourceDB1]
-Coordinates=675,10,97,195
+Coordinates=675,10,116,234
 
 [BindingsList1]
-Coordinates=120,332,82,33
+Coordinates=120,332,91,36
 
 [StyleBook1]
-Coordinates=137,395,70,33
+Coordinates=137,395,80,36
 
 [DM.FDQDespesasCaixa]
-Coordinates=395,332,130,33
+Coordinates=395,332,155,36
 Visible=False
 
 [DM.FDQSumDespesas]
-Coordinates=120,447,125,69
+Coordinates=304,816,148,80
 
 [BindSourceDB2]
-Coordinates=395,332,119,177
+Coordinates=10,578,142,212
 

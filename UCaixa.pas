@@ -17,8 +17,6 @@ type
     RectNovo: TRectangle;
     RectSalvar: TRectangle;
     RectpPesquisar: TRectangle;
-    EditLocalizar: TEdit;
-    ListBox1: TListBox;
     GroupBox2: TGroupBox;
     EditID: TEdit;
     Label1: TLabel;
@@ -46,12 +44,15 @@ type
     StyleBook1: TStyleBook;
     BindSourceDB2: TBindSourceDB;
     LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
+    ListBox1: TListBox;
+    EditLocalizar: TEdit;
     procedure EditVlrAberturaTyping(Sender: TObject);
     procedure RectNovoClick(Sender: TObject);
     procedure RectSalvarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure RectpPesquisarClick(Sender: TObject);
     procedure EditLocalizarExit(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
   private
     procedure AberturaCaixa(vlr_abertura: Real);
     procedure FechamentoCaixa(vlr_abertura: Real);
@@ -73,13 +74,15 @@ procedure TFrmCaixa.EditLocalizarExit(Sender: TObject);
 var
   Data: string;
   sql: string;
+  localizar: string;
 begin
   ListBox1.Visible := True;
   ListBox1.items.Clear;
   Data := DateToStr(date);
+  localizar := stringreplace(EditLocalizar.Text, '/', '.', [rfReplaceAll]);
 
   dm.tabBusca.Open('select id, data_abertura, status_caixa from caixa where' +
-    ' data_abertura between ' + EditLocalizar.Text + ' and ' + Data);
+    ' data_abertura =' + QuotedStr(localizar));
 
   ListBox1.items.BeginUpdate;
   while not dm.tabBusca.Eof do
@@ -125,7 +128,8 @@ begin
   dm.FDQCaixaVLR_FECHAMENTO.AsFloat :=
     (vlr_abertura + StrToFloat(EditReceita.Text)) -
     StrToFloat(EditDespesas.Text);
-  EditVlrFechamento.Text := FloatToStr(dm.FDQCaixaVLR_FECHAMENTO.AsFloat);
+  EditVlrFechamento.Text := FormatFloat('#,##0.00',
+    dm.FDQCaixaVLR_FECHAMENTO.AsFloat);
   EditDataFechamento.Text := DateToStr(dm.FDQCaixaDATA_FECHAMENTO.AsDateTime);
   dm.FDQCaixa.Post;
   dm.FDConnection1.CommitRetaining;
@@ -158,7 +162,7 @@ begin
     dm.FDQSumReceitas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumReceitas.Open();
 
-    EditReceita.Text := dm.FDQSumReceitasSUM.AsString;
+    EditReceita.Text := FormatFloat('#,##0.00', dm.FDQSumReceitasSUM.AsFloat);
 
     dm.FDQDespesasCaixa.Close;
     dm.FDQDespesasCaixa.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
@@ -168,7 +172,7 @@ begin
     dm.FDQSumDespesas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumDespesas.Open();
 
-    EditDespesas.Text := dm.FDQSumDespesasSum.AsString;
+    EditDespesas.Text := FormatFloat('#,##0.00', dm.FDQSumDespesasSum.AsFloat);
 
     EditDataAbertura.Text := dm.tabBusca.FieldByName('data_abertura').AsString;
     EditVlrAbertura.Text := dm.tabBusca.FieldByName('vlr_abertura').AsString;
@@ -179,14 +183,60 @@ begin
   end
   else
   begin
+    dm.FDQReceitas.Close;
+    dm.FDQDespesasCaixa.Close;
+  end;
+
+end;
+
+procedure TFrmCaixa.ListBox1DblClick(Sender: TObject);
+var
+  selecionado: string;
+  Dividido: TArray<String>;
+begin
+
+  selecionado := ListBox1.items[ListBox1.ItemIndex];
+  Dividido := selecionado.Split(['-']);
+  dm.tabBusca.Open
+    ('select id, status_caixa, data_abertura, vlr_abertura from caixa where id ='
+    + QuotedStr(Dividido[0]));
+
+  if dm.tabBusca.RecordCount > 0 then
+  begin
+
+    EditID.Text := dm.tabBusca.FieldByName('id').AsString;
 
     dm.FDQReceitas.Close;
-    dm.FDQReceitas.ParamByName('caixa').AsInteger := 0;
+    dm.FDQReceitas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQReceitas.Open();
 
     dm.FDQSumReceitas.Close;
-    dm.FDQSumReceitas.ParamByName('caixa').AsInteger := 0;
+    dm.FDQSumReceitas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumReceitas.Open();
+
+    EditReceita.Text := FormatFloat('#,##0.00', dm.FDQSumReceitasSUM.AsFloat);
+
+    dm.FDQDespesasCaixa.Close;
+    dm.FDQDespesasCaixa.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
+    dm.FDQDespesasCaixa.Open();
+
+    dm.FDQSumDespesas.Close;
+    dm.FDQSumDespesas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
+    dm.FDQSumDespesas.Open();
+
+    EditDespesas.Text := FormatFloat('#,##0.00', dm.FDQSumDespesasSum.AsFloat);
+
+    EditDataAbertura.Text := dm.tabBusca.FieldByName('data_abertura').AsString;
+    EditVlrAbertura.Text := dm.tabBusca.FieldByName('vlr_abertura').AsString;
+    if dm.tabBusca.FieldByName('status_caixa').AsString = 'A' then
+      LabelStatus.Text := 'Aberto'
+    else
+      LabelStatus.Text := 'Fechado';
+  end
+  else
+  begin
+    dm.FDQReceitas.Close;
+    dm.FDQDespesasCaixa.Close;
   end;
 end;
 
@@ -203,7 +253,7 @@ begin
     ('select id, status_caixa, data_abertura, vlr_abertura, vlr_fechamento from caixa where status_caixa =''F'' order by data_fechamento, hora_fechamento desc');
 
   vlr_abertura := dm.tabBusca.FieldByName('vlr_fechamento').AsFloat;
-  EditVlrAbertura.Text := FloatToStr(vlr_abertura);
+  EditVlrAbertura.Text := FormatFloat('#,##0.00', vlr_abertura);
 
   AberturaCaixa(vlr_abertura);
 

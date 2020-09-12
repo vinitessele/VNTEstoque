@@ -32,6 +32,7 @@ type
     procedure RectCancelarClick(Sender: TObject);
     procedure RectExclirClick(Sender: TObject);
   private
+    procedure LimpaCampos;
     { Private declarations }
   public
     { Public declarations }
@@ -116,16 +117,36 @@ begin
 
 end;
 
-procedure TFrmDespesas.RectNovoClick(Sender: TObject);
+procedure TFrmDespesas.LimpaCampos;
 begin
-  inherited;
   EditID.Text := EmptyStr;
   EditDescricao.Text := EmptyStr;
   EditData.Text := EmptyStr;
   EditValor.Text := EmptyStr;
   EditDocumento.Text := EmptyStr;
   EditDocumento.SetFocus;
-  dm.FDQDespesas.Append;
+end;
+
+procedure TFrmDespesas.RectNovoClick(Sender: TObject);
+begin
+  inherited;
+  LimpaCampos;
+
+  dm.tabBusca.Open
+    ('select id, status_caixa, data_abertura from caixa where status_caixa =''A'' ');
+
+  if dm.tabBusca.RecordCount > 0 then
+  begin
+    dm.FDQDespesas.Append;
+    EditData.Text := DateToStr(date);
+  end
+  else
+  begin
+    MessageDlg('O caixa deve estar aberto para efetuar o lançamento',
+      TMsgDlgType.mtwarning, [TMsgDlgBtn.mbok], 0);
+    Exit;
+  end;
+
 end;
 
 procedure TFrmDespesas.RectSalvarClick(Sender: TObject);
@@ -149,7 +170,7 @@ begin
   dm.FDQcontaVLR_TOTAL.AsFloat := StrToFloat(EditValor.Text);
   dm.FDQcontaVLR_PAGAMENTO.AsFloat := StrToFloat(EditValor.Text);
   dm.FDQcontaDT_VENDA.AsDateTime := StrToDate(EditData.Text);
-  dm.FDQcontaDT_RECORD.AsDateTime := Date;
+  dm.FDQcontaDT_RECORD.AsDateTime := date;
   dm.FDQcontaTP_CONTA.AsString := 'D';
   dm.FDQcontaID_CAIXA.AsInteger := dm.tabBusca.FieldByName('id').AsInteger;
   dm.FDQcontaSTATUS_CONTA.AsString := 'L';

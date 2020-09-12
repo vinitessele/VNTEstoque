@@ -2,8 +2,8 @@ object FrmFinaliza: TFrmFinaliza
   Left = 0
   Top = 0
   Caption = 'Finaliza Venda'
-  ClientHeight = 149
-  ClientWidth = 527
+  ClientHeight = 314
+  ClientWidth = 223
   Fill.Kind = Solid
   Position = DesktopCenter
   FormFactor.Width = 320
@@ -21,7 +21,7 @@ object FrmFinaliza: TFrmFinaliza
     Margins.Bottom = 5.000000000000000000
     Position.X = 5.000000000000000000
     Position.Y = 5.000000000000000000
-    Size.Width = 517.000000000000000000
+    Size.Width = 213.000000000000000000
     Size.Height = 36.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
@@ -30,7 +30,7 @@ object FrmFinaliza: TFrmFinaliza
     object Label5: TLabel
       Align = Client
       StyledSettings = [Family, Style]
-      Size.Width = 517.000000000000000000
+      Size.Width = 213.000000000000000000
       Size.Height = 36.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 20.000000000000000000
@@ -41,9 +41,9 @@ object FrmFinaliza: TFrmFinaliza
     end
   end
   object ComboBox1: TComboBox
-    Position.X = 139.000000000000000000
-    Position.Y = 64.000000000000000000
-    Size.Width = 161.000000000000000000
+    Position.X = 6.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 203.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
@@ -57,8 +57,8 @@ object FrmFinaliza: TFrmFinaliza
     Margins.Right = 5.000000000000000000
     Margins.Bottom = 5.000000000000000000
     Position.X = 5.000000000000000000
-    Position.Y = 105.000000000000000000
-    Size.Width = 517.000000000000000000
+    Position.Y = 270.000000000000000000
+    Size.Width = 213.000000000000000000
     Size.Height = 39.000000000000000000
     Size.PlatformDefault = False
     Stroke.Kind = None
@@ -68,7 +68,7 @@ object FrmFinaliza: TFrmFinaliza
     object Label9: TLabel
       Align = Client
       StyledSettings = [Family, Size, Style]
-      Size.Width = 517.000000000000000000
+      Size.Width = 213.000000000000000000
       Size.Height = 39.000000000000000000
       Size.PlatformDefault = False
       TextSettings.FontColor = claWhite
@@ -78,86 +78,139 @@ object FrmFinaliza: TFrmFinaliza
     end
   end
   object Label1: TLabel
-    Position.X = 16.000000000000000000
+    Position.X = 7.000000000000000000
     Position.Y = 48.000000000000000000
     Text = 'Valor Total'
-    TabOrder = 9
+    TabOrder = 13
   end
   object EditValor: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
     TabOrder = 0
-    Position.X = 16.000000000000000000
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Position.X = 7.000000000000000000
     Position.Y = 64.000000000000000000
-    Size.Width = 121.000000000000000000
+    Size.Width = 200.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+    StyledSettings = [Family, FontColor]
+    OnTyping = EditValorTyping
   end
   object Label2: TLabel
-    Position.X = 139.000000000000000000
-    Position.Y = 48.000000000000000000
+    Position.X = 6.000000000000000000
+    Position.Y = 88.000000000000000000
     Text = 'Forma de Pagamento'
-    TabOrder = 5
+    TabOrder = 9
   end
   object Label3: TLabel
-    Position.X = 371.000000000000000000
-    Position.Y = 48.000000000000000000
+    Position.X = 109.000000000000000000
+    Position.Y = 168.000000000000000000
     Size.Width = 73.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'N'#176' Parcelas'
     Visible = False
-    TabOrder = 8
+    TabOrder = 12
   end
   object EditParcelas: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 3
-    Position.X = 371.000000000000000000
-    Position.Y = 64.000000000000000000
-    Size.Width = 65.000000000000000000
+    TabOrder = 5
+    Position.X = 109.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 100.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     Visible = False
   end
   object Label4: TLabel
-    Position.X = 438.000000000000000000
-    Position.Y = 48.000000000000000000
+    Position.X = 6.000000000000000000
+    Position.Y = 208.000000000000000000
     Size.Width = 78.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Vlr Parcela'
     Visible = False
-    TabOrder = 6
+    TabOrder = 10
   end
   object EditVlrParcela: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 4
-    Position.X = 438.000000000000000000
-    Position.Y = 64.000000000000000000
-    Size.Width = 73.000000000000000000
+    TabOrder = 6
+    Position.X = 6.000000000000000000
+    Position.Y = 224.000000000000000000
+    Size.Width = 100.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     Visible = False
     OnEnter = EditVlrParcelaEnter
   end
   object Label6: TLabel
-    Position.X = 304.000000000000000000
-    Position.Y = 48.000000000000000000
+    Position.X = 7.000000000000000000
+    Position.Y = 168.000000000000000000
     Size.Width = 65.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Vlr Entrada'
     Visible = False
-    TabOrder = 7
+    TabOrder = 11
   end
   object EditValorEntrada: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 2
-    Position.X = 304.000000000000000000
-    Position.Y = 64.000000000000000000
-    Size.Width = 65.000000000000000000
+    TabOrder = 4
+    Position.X = 7.000000000000000000
+    Position.Y = 184.000000000000000000
+    Size.Width = 100.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     Visible = False
     OnTyping = EditValorEntradaTyping
+  end
+  object EditDinheiro: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Position.X = 7.000000000000000000
+    Position.Y = 144.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, FontColor]
+    Visible = False
+    OnTyping = EditDinheiroTyping
+  end
+  object Label7: TLabel
+    Position.X = 7.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 78.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Dinheiro'
+    Visible = False
+    TabOrder = 8
+  end
+  object Label8: TLabel
+    Position.X = 107.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 78.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Troco'
+    Visible = False
+    TabOrder = 7
+  end
+  object EditTroco: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claRed
+    Position.X = 109.000000000000000000
+    Position.Y = 144.000000000000000000
+    Size.Width = 100.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family]
+    Visible = False
+    OnEnter = EditTrocoEnter
   end
 end

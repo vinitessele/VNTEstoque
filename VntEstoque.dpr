@@ -16,7 +16,9 @@ uses
   UVenda in 'UVenda.pas' {FrmVenda},
   UFinalizaVenda in 'UFinalizaVenda.pas' {FrmFinaliza},
   UCaixa in 'UCaixa.pas' {FrmCaixa},
-  UDespesas in 'UDespesas.pas' {FrmDespesas};
+  UDespesas in 'UDespesas.pas' {FrmDespesas},
+  UEntradaProdutos in 'UEntradaProdutos.pas' {FrmEntradaProdutos},
+  Upagamento in 'Upagamento.pas' {FrmPagamento};
 
 {$R *.res}
 
@@ -32,5 +34,7 @@ begin
   Application.CreateForm(TFrmFinaliza, FrmFinaliza);
   Application.CreateForm(TFrmCaixa, FrmCaixa);
   Application.CreateForm(TFrmDespesas, FrmDespesas);
+  Application.CreateForm(TFrmEntradaProdutos, FrmEntradaProdutos);
+  Application.CreateForm(TFrmPagamento, FrmPagamento);
   Application.Run;
 end.

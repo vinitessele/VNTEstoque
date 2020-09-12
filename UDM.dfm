@@ -31,7 +31,7 @@ object DM: TDM
     SQL.Strings = (
       'select * from usuario')
     Left = 32
-    Top = 336
+    Top = 376
     object FDQUsuarioID: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'ID'
@@ -66,7 +66,7 @@ object DM: TDM
     SQL.Strings = (
       'select * from pessoa')
     Left = 32
-    Top = 208
+    Top = 248
     object FDQPessoaID: TFDAutoIncField
       FieldName = 'ID'
       Origin = 'ID'
@@ -202,8 +202,8 @@ object DM: TDM
     Connection = FDConnection1
     SQL.Strings = (
       'select * from estado')
-    Left = 32
-    Top = 136
+    Left = 184
+    Top = 192
     object FDQEstadoID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -231,7 +231,7 @@ object DM: TDM
     SQL.Strings = (
       'select * from produto')
     Left = 104
-    Top = 200
+    Top = 240
     object FDQProdutosID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -320,7 +320,7 @@ object DM: TDM
     SQL.Strings = (
       'select * from venda')
     Left = 32
-    Top = 384
+    Top = 424
     object FDQVendaID: TFDAutoIncField
       FieldName = 'ID'
       Origin = 'ID'
@@ -369,7 +369,7 @@ object DM: TDM
     SQL.Strings = (
       'select * from venda_item')
     Left = 144
-    Top = 384
+    Top = 424
     object FDQVendaItensID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -405,19 +405,19 @@ object DM: TDM
   object dsVendaItens: TDataSource
     DataSet = FDQVendaItens
     Left = 136
-    Top = 416
+    Top = 456
   end
   object dsVenda: TDataSource
     DataSet = FDQVenda
     Left = 72
-    Top = 416
+    Top = 456
   end
   object FDQTpagamento: TFDQuery
     Connection = FDConnection1
     SQL.Strings = (
       'select *from tipo_pagamento')
     Left = 32
-    Top = 464
+    Top = 504
     object FDQTpagamentoID: TIntegerField
       FieldName = 'ID'
       Origin = 'ID'
@@ -605,7 +605,7 @@ object DM: TDM
       'and status_conta ='#39'L'#39
       'and tp_conta ='#39'R'#39)
     Left = 32
-    Top = 272
+    Top = 312
     ParamData = <
       item
         Name = 'CAIXA'
@@ -659,7 +659,7 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'id'
     SQL.Strings = (
       'select * from despesa')
-    Left = 96
+    Left = 32
     Top = 136
     object FDQDespesasID: TFDAutoIncField
       FieldName = 'ID'
@@ -702,7 +702,7 @@ object DM: TDM
       'and status_conta ='#39'L'#39
       'and tp_conta ='#39'R'#39)
     Left = 96
-    Top = 272
+    Top = 312
     ParamData = <
       item
         Name = 'CAIXA'
@@ -738,8 +738,8 @@ object DM: TDM
       'where c.id_caixa = :caixa'
       'and status_conta ='#39'L'#39
       'and tp_conta ='#39'D'#39)
-    Left = 208
-    Top = 144
+    Left = 96
+    Top = 136
     ParamData = <
       item
         Name = 'CAIXA'
@@ -787,8 +787,8 @@ object DM: TDM
       'where id_caixa = :caixa'
       'and status_conta ='#39'L'#39
       'and tp_conta ='#39'D'#39)
-    Left = 280
-    Top = 144
+    Left = 240
+    Top = 464
     ParamData = <
       item
         Name = 'CAIXA'
@@ -802,6 +802,86 @@ object DM: TDM
       Origin = '"SUM"'
       ProviderFlags = []
       ReadOnly = True
+      Precision = 18
+      Size = 2
+    end
+  end
+  object FDQEntrada: TFDQuery
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_entrada'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from entrada')
+    Left = 32
+    Top = 192
+    object FDQEntradaID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQEntradaDATA: TDateField
+      FieldName = 'DATA'
+      Origin = '"DATA"'
+    end
+    object FDQEntradaID_PESSOA: TIntegerField
+      FieldName = 'ID_PESSOA'
+      Origin = 'ID_PESSOA'
+      Required = True
+    end
+    object FDQEntradaVLR_TOTAL: TFMTBCDField
+      FieldName = 'VLR_TOTAL'
+      Origin = 'VLR_TOTAL'
+      Precision = 18
+      Size = 2
+    end
+    object FDQEntradaID_TIPOPAGAMENTO: TIntegerField
+      FieldName = 'ID_TIPOPAGAMENTO'
+      Origin = 'ID_TIPOPAGAMENTO'
+    end
+    object FDQEntradaID_CAIXA: TIntegerField
+      FieldName = 'ID_CAIXA'
+      Origin = 'ID_CAIXA'
+    end
+  end
+  object FDQEntradaItem: TFDQuery
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_entrada_item'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from entrada_item')
+    Left = 112
+    Top = 192
+    object FDQEntradaItemID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object FDQEntradaItemID_ENTRADA: TIntegerField
+      FieldName = 'ID_ENTRADA'
+      Origin = 'ID_ENTRADA'
+      Required = True
+    end
+    object FDQEntradaItemID_PRODUTO: TIntegerField
+      FieldName = 'ID_PRODUTO'
+      Origin = 'ID_PRODUTO'
+    end
+    object FDQEntradaItemQTE_PRODUTO: TSingleField
+      FieldName = 'QTE_PRODUTO'
+      Origin = 'QTE_PRODUTO'
+    end
+    object FDQEntradaItemVLR_UNITARIO: TFMTBCDField
+      FieldName = 'VLR_UNITARIO'
+      Origin = 'VLR_UNITARIO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQEntradaItemVLR_TOTAL: TFMTBCDField
+      FieldName = 'VLR_TOTAL'
+      Origin = 'VLR_TOTAL'
       Precision = 18
       Size = 2
     end

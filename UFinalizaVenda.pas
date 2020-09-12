@@ -24,6 +24,10 @@ type
     EditVlrParcela: TEdit;
     Label6: TLabel;
     EditValorEntrada: TEdit;
+    EditDinheiro: TEdit;
+    Label7: TLabel;
+    Label8: TLabel;
+    EditTroco: TEdit;
     procedure FormShow(Sender: TObject);
     procedure RectConfirmaClick(Sender: TObject);
     procedure ComboBox1Exit(Sender: TObject);
@@ -31,6 +35,9 @@ type
       Shift: TShiftState);
     procedure EditValorEntradaTyping(Sender: TObject);
     procedure EditVlrParcelaEnter(Sender: TObject);
+    procedure EditTrocoEnter(Sender: TObject);
+    procedure EditDinheiroTyping(Sender: TObject);
+    procedure EditValorTyping(Sender: TObject);
   private
     procedure FinalizaVenda;
     procedure GerarConta;
@@ -60,6 +67,10 @@ begin
     EditParcelas.Visible := True;
     EditVlrParcela.Visible := True;
     EditValorEntrada.Visible := True;
+    EditDinheiro.Visible := false;
+    EditTroco.Visible := false;
+    Label7.Visible := false;
+    Label8.Visible := false;
   end
   else
   begin
@@ -69,6 +80,10 @@ begin
     EditParcelas.Visible := false;
     EditVlrParcela.Visible := false;
     EditValorEntrada.Visible := false;
+    EditDinheiro.Visible := True;
+    EditTroco.Visible := True;
+    Label7.Visible := True;
+    Label8.Visible := True;
   end;
 end;
 
@@ -87,9 +102,29 @@ begin
   end;
 end;
 
+procedure TFrmFinaliza.EditDinheiroTyping(Sender: TObject);
+begin
+  Formatar(EditDinheiro, Valor);
+end;
+
+procedure TFrmFinaliza.EditTrocoEnter(Sender: TObject);
+var
+  vlr_dinheiro, vlr_troco, vlr_compra: real;
+begin
+  vlr_dinheiro := StrToFloat(EditDinheiro.Text);
+  vlr_compra := StrToFloat(EditValor.Text);
+  vlr_troco := vlr_dinheiro - vlr_compra;
+  EditTroco.Text := FormatFloat('R$ #,##0.00', vlr_troco);
+end;
+
 procedure TFrmFinaliza.EditValorEntradaTyping(Sender: TObject);
 begin
   Formatar(EditValorEntrada, Valor);
+end;
+
+procedure TFrmFinaliza.EditValorTyping(Sender: TObject);
+begin
+  Formatar(EditValor, Valor);
 end;
 
 procedure TFrmFinaliza.EditVlrParcelaEnter(Sender: TObject);
@@ -245,7 +280,7 @@ end;
 procedure TFrmFinaliza.FormShow(Sender: TObject);
 begin
 
-  EditValor.Text := FloatToStr(FrmVenda.vl_total);
+  EditValor.Text := FormatFloat('#,##0.00', FrmVenda.vl_total);
 
   dm.FDQTpagamento.Open();
   while not dm.FDQTpagamento.Eof do

@@ -1,0 +1,138 @@
+object FrmPagamento: TFrmPagamento
+  Left = 0
+  Top = 0
+  Caption = 'Pagamento'
+  ClientHeight = 373
+  ClientWidth = 220
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Rectangle3: TRectangle
+    Align = Top
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 210.000000000000000000
+    Size.Height = 36.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label5: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 210.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Finaliza Entrada'
+      TabOrder = 0
+    end
+  end
+  object RectConfirma: TRectangle
+    Align = Bottom
+    Fill.Color = claMidnightblue
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 329.000000000000000000
+    Size.Width = 210.000000000000000000
+    Size.Height = 39.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label9: TLabel
+      Align = Client
+      StyledSettings = [Family, Size, Style]
+      Size.Width = 210.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Finalizar<F10>'
+      TabOrder = 0
+    end
+  end
+  object Label1: TLabel
+    Position.X = 7.000000000000000000
+    Position.Y = 48.000000000000000000
+    Text = 'Valor Total'
+    TabOrder = 17
+  end
+  object EditValor: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Position.X = 7.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, FontColor]
+  end
+  object Label2: TLabel
+    Position.X = 6.000000000000000000
+    Position.Y = 88.000000000000000000
+    Text = 'Forma de Pagamento'
+    TabOrder = 11
+  end
+  object ComboBox1: TComboBox
+    Position.X = 6.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 203.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    OnExit = ComboBox1Exit
+  end
+  object Label3: TLabel
+    Position.X = 7.000000000000000000
+    Position.Y = 131.000000000000000000
+    Text = 'Qte Parcelas'
+    TabOrder = 16
+  end
+  object EditParcelas: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 1
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Position.X = 7.000000000000000000
+    Position.Y = 147.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, FontColor]
+  end
+  object EditVlrParcela: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 0
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    Position.X = 7.000000000000000000
+    Position.Y = 187.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, FontColor]
+  end
+  object Label4: TLabel
+    Position.X = 7.000000000000000000
+    Position.Y = 171.000000000000000000
+    Text = 'Valor Parcela'
+    TabOrder = 15
+  end
+end
