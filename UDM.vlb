@@ -11,7 +11,7 @@ Coordinates=213,53,110,33
 Coordinates=213,105,161,33
 
 [FDQUsuario]
-Coordinates=10,467,91,141
+Coordinates=448,467,91,141
 
 [FDConnection1]
 Coordinates=110,53,90,33
@@ -44,7 +44,7 @@ Coordinates=411,209,101,33
 Coordinates=412,261,131,33
 
 [FDQCidade]
-Coordinates=111,467,70,105
+Coordinates=629,467,70,105
 
 [FDQProdutosDATACADASTRO]
 Coordinates=412,313,168,33
@@ -74,7 +74,7 @@ Coordinates=412,573,127,33
 Coordinates=393,622,143,33
 
 [FDQEstado]
-Coordinates=191,467,70,105
+Coordinates=549,467,70,105
 
 [FDQProdutosUNIDADEMEDIA]
 Coordinates=224,622,161,33
@@ -167,7 +167,7 @@ Coordinates=848,417,97,33
 Coordinates=651,726,158,33
 
 [FDQVendaItens]
-Coordinates=748,10,91,159
+Coordinates=226,467,91,159
 
 [FDQVendaItensQTE_PRODUTO]
 Coordinates=848,469,169,33
@@ -197,10 +197,10 @@ Coordinates=424,764,77,33
 Coordinates=255,764,159,33
 
 [FDQTpagamento]
-Coordinates=271,467,97,87
+Coordinates=709,467,97,87
 
 [tabBusca]
-Coordinates=582,467,60,51
+Coordinates=236,636,60,51
 
 [FDQVendaDATA]
 Coordinates=848,625,95,33
@@ -281,7 +281,7 @@ Coordinates=1075,937,157,33
 Coordinates=1075,989,73,33
 
 [FDQDespesas]
-Coordinates=488,467,84,159
+Coordinates=10,467,84,159
 
 [FDQCaixaDATA_ABERTURA]
 Coordinates=1075,1041,155,33
@@ -314,7 +314,7 @@ Coordinates=848,833,142,33
 Coordinates=1075,313,123,33
 
 [FDQSumReceitas]
-Coordinates=378,467,100,69
+Coordinates=10,636,100,69
 
 [FDQReceitasNOME]
 Coordinates=1075,469,109,33
@@ -368,10 +368,10 @@ Coordinates=808,1193,94,33
 Coordinates=1314,313,145,33
 
 [FDQDespesasCaixa]
-Coordinates=299,573,111,159
+Coordinates=327,467,111,159
 
 [FDQSumDespesas]
-Coordinates=120,386,106,69
+Coordinates=120,636,106,69
 
 [FDQDespesasCaixaDT_RECORD]
 Coordinates=272,332,175,33
@@ -390,4 +390,61 @@ Coordinates=547,328,198,33
 
 [FDQDespesasCaixaVLR_TOTAL]
 Coordinates=547,380,172,33
+
+[FDQEntradaItemQTE_PRODUTO]
+Coordinates=669,852,174,33
+
+[FDQEntradaDATA]
+Coordinates=0,737,103,33
+
+[FDQEntradaID_PESSOA]
+Coordinates=530,852,133,33
+
+[FDQEntradaItemVLR_TOTAL]
+Coordinates=0,819,156,33
+
+[FDQEntradaItemID_PRODUTO]
+Coordinates=906,890,163,33
+
+[FDQEntradaItem]
+Coordinates=748,10,95,177
+
+[FDQEntrada]
+Coordinates=104,467,112,177
+
+[FDQEntradaID]
+Coordinates=986,924,84,33
+
+[FDQEntradaVLR_TOTAL]
+Coordinates=1314,365,135,33
+
+[FDQEntradaID_CAIXA]
+Coordinates=1314,417,122,33
+
+[FDQEntradaItemVLR_UNITARIO]
+Coordinates=727,890,171,33
+
+[FDQEntradaID_TIPOPAGAMENTO]
+Coordinates=538,890,181,33
+
+[FDQSumDespesasSUM]
+Coordinates=1314,469,129,33
+
+[FDQEntradaItemID]
+Coordinates=877,924,105,33
+
+[FDQEntradaItemID_ENTRADA]
+Coordinates=369,890,161,33
+
+[FDQEntradaItemDESCRICAO]
+Coordinates=272,332,157,33
+
+[dsEntrada]
+Coordinates=403,636,64,33
+
+[DsEntradaItem]
+Coordinates=306,636,87,33
+
+[FDQEntradaNR_NOTA]
+Coordinates=748,924,124,33
 

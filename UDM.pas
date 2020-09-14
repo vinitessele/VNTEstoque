@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, FireDAC.FMXUI.Wait, FireDAC.Phys.IBBase, Data.DB,
   FireDAC.Comp.Client, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
-  FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DApt, FireDAC.Comp.DataSet, IniFiles, IOUtils;
 
 type
   TDM = class(TDataModule)
@@ -157,7 +157,12 @@ type
     FDQEntradaItemQTE_PRODUTO: TSingleField;
     FDQEntradaItemVLR_UNITARIO: TFMTBCDField;
     FDQEntradaItemVLR_TOTAL: TFMTBCDField;
+    FDQEntradaItemDESCRICAO: TStringField;
+    dsEntrada: TDataSource;
+    DsEntradaItem: TDataSource;
+    FDQEntradaNR_NOTA: TIntegerField;
     procedure FDConnection1AfterConnect(Sender: TObject);
+    procedure FDConnection1BeforeConnect(Sender: TObject);
   private
     { Private declarations }
   public
@@ -191,6 +196,26 @@ begin
   FDQSumDespesas.Active := True;
   FDQEntrada.Active := True;
   FDQEntradaItem.Active := True;
+end;
+
+procedure TDM.FDConnection1BeforeConnect(Sender: TObject);
+var
+  ArqIni: TIniFile;
+  sNomeArq: String;
+  servidor: string;
+  caminho: string;
+  strPath: string;
+begin
+  ArqIni := TIniFile.Create(extractFilePath(ParamStr(0)) + 'Conf.ini');
+  servidor := ArqIni.ReadString('SERVIDOR', 'Servidor', 'Erro ao ler o valor');
+  caminho := ArqIni.ReadString('SERVIDOR', 'Database', 'Erro ao ler o valor');
+  ArqIni.Free;
+  strPath := System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath,
+    caminho );
+//{$IFDEF RELEASE}
+  FDConnection1.Params.Values['DATABASE'] := strPath;
+//{$ELSE}
+//{$ENDIF}
 end;
 
 end.

@@ -48,6 +48,7 @@ type
       var KeyChar: Char; Shift: TShiftState);
     procedure ListBox1DblClick(Sender: TObject);
   private
+    procedure LimpaCampos;
     { Private declarations }
   public
     { Public declarations }
@@ -69,8 +70,8 @@ begin
   ListBox1.Visible := True;
   ListBox1.items.Clear;
   dm.tabBusca.Open('SELECT ID,descricao FROM produto ' + ' WHERE ' +
-    ' descricao LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%')+
-    ' OR codigobarra LIKE '+ QuotedStr('%' + EditLocalizar.Text + '%'));
+    ' descricao LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%') +
+    ' OR codigobarra LIKE ' + QuotedStr('%' + EditLocalizar.Text + '%'));
 
   while not dm.tabBusca.Eof do
   begin
@@ -103,7 +104,7 @@ begin
     percent := StrToFloat(EditPercentLucro.Text);
     vlr := vlrCompra * (percent / 100);
 
-    EditVlrVenda.Text := FormatFloat('#,##0.00',
+    EditVlrVenda.Text := FormatFloat('#0.00',
       vlr + StrToFloat(EditVlrCompra.Text));;
 
   end;
@@ -124,9 +125,8 @@ begin
 
   sql := 'select id, descricao, codigobarra, estoque, ' +
     ' estoqueminimo, valorcompra, valorvenda, ' +
-    ' porcentagemlucro, unidademedia, observacoes,controleestoque'+
-    ' from produto'
-    + //
+    ' porcentagemlucro, unidademedia, observacoes,controleestoque' +
+    ' from produto' + //
     ' where descricao =' + QuotedStr(nome);
 
   dm.tabBusca.Open(sql);
@@ -150,6 +150,20 @@ begin
   ListBox1.Visible := false;
 end;
 
+procedure TFrmProdutos.LimpaCampos;
+begin
+  EditId.Text := EmptyStr;
+  EditDescricao.Text := EmptyStr;
+  EditCodBarras.Text := EmptyStr;
+  EditEstoque.Text := EmptyStr;
+  EditEstoqueM.Text := EmptyStr;
+  EditVlrCompra.Text := EmptyStr;
+  EditVlrVenda.Text := EmptyStr;
+  EditPercentLucro.Text := EmptyStr;
+  EditUnMedida.Text := EmptyStr;
+  Memo1.Text := EmptyStr;
+end;
+
 procedure TFrmProdutos.RectAlterarClick(Sender: TObject);
 begin
   inherited;
@@ -164,11 +178,11 @@ begin
   GroupBox2.Enabled := false;
   dm.FDQProdutos.Cancel;
   dm.FDConnection1.RollbackRetaining;
+  LimpaCampos;
 end;
 
 procedure TFrmProdutos.RectExclirClick(Sender: TObject);
 begin
-
   GroupBox2.Enabled := false;
   dm.FDQProdutos.Delete;
   dm.FDConnection1.CommitRetaining;
@@ -179,6 +193,8 @@ procedure TFrmProdutos.RectNovoClick(Sender: TObject);
 begin
   inherited;
   GroupBox2.Enabled := True;
+  LimpaCampos;
+
   dm.FDQProdutos.Append;
   EditDescricao.SetFocus;
 end;

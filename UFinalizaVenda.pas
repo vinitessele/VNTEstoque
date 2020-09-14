@@ -72,6 +72,19 @@ begin
     Label7.Visible := false;
     Label8.Visible := false;
   end
+  else if ComboBox1.Items[ComboBox1.ItemIndex] = 'Cartão' then
+  begin
+    Label3.Visible := True;
+    Label4.Visible := True;
+    Label6.Visible := True;
+    EditParcelas.Visible := True;
+    EditVlrParcela.Visible := True;
+    EditValorEntrada.Visible := True;
+    EditDinheiro.Visible := false;
+    EditTroco.Visible := false;
+    Label7.Visible := false;
+    Label8.Visible := false;
+  end
   else
   begin
     Label3.Visible := false;
@@ -144,7 +157,7 @@ begin
 
   vlr_parcela := (StrToFloat(EditValor.Text) - vlr_entrada) / qte_parcelas;
 
-  EditVlrParcela.Text := FloatToStr(vlr_parcela);
+  EditVlrParcela.Text := FormatFloat('#0.00', vlr_parcela);
 end;
 
 procedure TFrmFinaliza.FinalizaVenda;
@@ -280,7 +293,7 @@ end;
 procedure TFrmFinaliza.FormShow(Sender: TObject);
 begin
 
-  EditValor.Text := FormatFloat('#,##0.00', FrmVenda.vl_total);
+  EditValor.Text := FormatFloat('#0.00', FrmVenda.vl_total);
 
   dm.FDQTpagamento.Open();
   while not dm.FDQTpagamento.Eof do

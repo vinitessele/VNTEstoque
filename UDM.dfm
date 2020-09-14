@@ -14,6 +14,7 @@ object DM: TDM
       'DriverID=FB')
     Connected = True
     AfterConnect = FDConnection1AfterConnect
+    BeforeConnect = FDConnection1BeforeConnect
     Left = 40
     Top = 16
   end
@@ -494,7 +495,6 @@ object DM: TDM
     end
   end
   object FDQconta: TFDQuery
-    Active = True
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvGeneratorName]
     UpdateOptions.GeneratorName = 'gen_conta'
@@ -807,6 +807,7 @@ object DM: TDM
     end
   end
   object FDQEntrada: TFDQuery
+    Active = True
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvGeneratorName]
     UpdateOptions.GeneratorName = 'gen_entrada'
@@ -816,10 +817,10 @@ object DM: TDM
     Left = 32
     Top = 192
     object FDQEntradaID: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object FDQEntradaDATA: TDateField
       FieldName = 'DATA'
@@ -844,21 +845,38 @@ object DM: TDM
       FieldName = 'ID_CAIXA'
       Origin = 'ID_CAIXA'
     end
+    object FDQEntradaNR_NOTA: TIntegerField
+      FieldName = 'NR_NOTA'
+      Origin = 'NR_NOTA'
+    end
   end
   object FDQEntradaItem: TFDQuery
+    Active = True
+    IndexFieldNames = 'ID_ENTRADA'
+    MasterSource = dsEntrada
+    MasterFields = 'ID'
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvGeneratorName]
     UpdateOptions.GeneratorName = 'gen_entrada_item'
     UpdateOptions.AutoIncFields = 'id'
     SQL.Strings = (
-      'select * from entrada_item')
+      'select * from entrada_item e'
+      'inner join produto p on e.id_produto = p.id'
+      'where id_entrada=:entrada')
     Left = 112
     Top = 192
+    ParamData = <
+      item
+        Name = 'ENTRADA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 26
+      end>
     object FDQEntradaItemID: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'ID'
       Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object FDQEntradaItemID_ENTRADA: TIntegerField
       FieldName = 'ID_ENTRADA'
@@ -885,5 +903,23 @@ object DM: TDM
       Precision = 18
       Size = 2
     end
+    object FDQEntradaItemDESCRICAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+  end
+  object dsEntrada: TDataSource
+    DataSet = FDQEntrada
+    Left = 48
+    Top = 192
+  end
+  object DsEntradaItem: TDataSource
+    DataSet = FDQEntradaItem
+    Left = 72
+    Top = 176
   end
 end

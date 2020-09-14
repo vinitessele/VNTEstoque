@@ -36,9 +36,9 @@ begin
         Str := '0';
 
     try
-        Result := FormatFloat('#,##0.00', strtofloat(str) / 100);
+        Result := FormatFloat('#0.00', strtofloat(str) / 100);
     except
-        Result := FormatFloat('#,##0.00', 0);
+        Result := FormatFloat('#0.00', 0);
     end;
 end;
 

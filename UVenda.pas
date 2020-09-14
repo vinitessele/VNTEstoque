@@ -143,7 +143,7 @@ var
 begin
   vlr_totalitem := StrToFloat(EditQuantidade.Text) *
     StrToFloat(EditVlUnitario.Text);
-  EditVltotal.Text := FloatToStr(vlr_totalitem);
+  EditVltotal.Text := FormatFloat('#0.00', vlr_totalitem);
 end;
 
 procedure TFrmVenda.EditVltotalTyping(Sender: TObject);
@@ -248,11 +248,16 @@ end;
 
 procedure TFrmVenda.Insert_Venda;
 begin
+  dm.tabBusca.Close;
   dm.tabBusca.Open
     ('select id, status_caixa, data_abertura from caixa where status_caixa =''A'' ');
 
   if dm.tabBusca.RecordCount > 0 then
   begin
+    ListBoxItens.Clear;
+    EditCliente.Enabled := True;
+    EditCliente.Text := EmptyStr;
+    EditCliente.SetFocus;
     dm.FDQVenda.Append;
     dm.FDQVendaDATA.AsDateTime := date;
     dm.FDQVendaHORA.AsDateTime := Time;

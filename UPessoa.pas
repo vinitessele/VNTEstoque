@@ -58,6 +58,7 @@ type
       var KeyChar: Char; Shift: TShiftState);
     procedure ListBox1DblClick(Sender: TObject);
   private
+    procedure LimpaCampos;
     { Private declarations }
   public
     { Public declarations }
@@ -131,7 +132,8 @@ begin
   ListBox1.items.BeginUpdate;
   while not dm.tabBusca.Eof do
   begin
-    ListBox1.items.Add(dm.tabBusca.FieldByName('id').AsString+' - '+dm.tabBusca.FieldByName('Nome').AsString);
+    ListBox1.items.Add(dm.tabBusca.FieldByName('id').AsString + ' - ' +
+      dm.tabBusca.FieldByName('Nome').AsString);
     dm.tabBusca.Next;
   end;
   ListBox1.items.EndUpdate;
@@ -175,6 +177,23 @@ begin
 
 end;
 
+procedure TFrmPessoa.LimpaCampos;
+begin
+  EditId.Text := EmptyStr;
+  EditNome.Text := EmptyStr;
+  EditFantasia.Text := EmptyStr;
+  EditCPFCNPJ.Text := EmptyStr;
+  EditRgIE.Text := EmptyStr;
+  EditEndereco.Text := EmptyStr;
+  EditNumero.Text := EmptyStr;
+  EditBairro.Text := EmptyStr;
+  EditCidade.Text := EmptyStr;
+  EditCep.Text := EmptyStr;
+  EditCelular.Text := EmptyStr;
+  EditEmail.Text := EmptyStr;
+  EditDtNascimento.Text := EmptyStr;
+end;
+
 procedure TFrmPessoa.RectAlterarClick(Sender: TObject);
 begin
   inherited;
@@ -187,6 +206,7 @@ procedure TFrmPessoa.RectCancelarClick(Sender: TObject);
 begin
   inherited;
   GroupBox2.Enabled := false;
+  LimpaCampos;
 end;
 
 procedure TFrmPessoa.RectExclirClick(Sender: TObject);
@@ -200,6 +220,8 @@ procedure TFrmPessoa.RectNovoClick(Sender: TObject);
 begin
   inherited;
   GroupBox2.Enabled := True;
+  LimpaCampos;
+
   dm.FDQPessoa.Append;
   EditNome.SetFocus;
 end;

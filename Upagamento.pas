@@ -26,6 +26,8 @@ type
     procedure ComboBox1Exit(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
+    procedure RectConfirmaDblClick(Sender: TObject);
+    procedure EditVlrParcelaEnter(Sender: TObject);
   private
     procedure GerarConta;
     procedure AtualizaEstoque;
@@ -62,6 +64,12 @@ begin
   end;
 end;
 
+procedure TFrmPagamento.EditVlrParcelaEnter(Sender: TObject);
+begin
+  EditVlrParcela.Text := FormatFloat('#0.00', strtofloat(EditValor.Text) /
+    strtofloat(EditParcelas.Text));
+end;
+
 procedure TFrmPagamento.FormKeyDown(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
 begin
@@ -72,15 +80,14 @@ begin
       begin
         AtualizaEstoque;
         GerarConta;
-       FinalizaVenda;
+        FinalizaVenda;
       end;
   end;
 end;
 
 procedure TFrmPagamento.FormShow(Sender: TObject);
 begin
-  EditValor.Text := FormatFloat('#,##0.00',
-    FrmEntradaProdutos.vl_total);
+  EditValor.Text := FormatFloat('#0.00', FrmEntradaProdutos.vl_total);
 
   dm.FDQTpagamento.Open();
   while not dm.FDQTpagamento.Eof do
@@ -93,21 +100,30 @@ end;
 procedure TFrmPagamento.AtualizaEstoque;
 var
   id_produto: integer;
-  qte_produto: real;
+  qte_produto, vlr_unit: real;
 begin
   dm.tabBusca.Open
-    ('select id_produto, qte_produto  from entrada_item where id_entrada=' +
-    dm.FDQEntradaID.AsString);
+    ('select id_produto, qte_produto, vlr_unitario  from entrada_item where id_entrada='
+    + dm.FDQEntradaID.AsString);
 
   while not dm.tabBusca.Eof do
   begin
     id_produto := dm.tabBusca.FieldByName('id_produto').AsInteger;
     qte_produto := dm.tabBusca.FieldByName('qte_produto').AsFloat;
+    vlr_unit := dm.tabBusca.FieldByName('vlr_unitario').AsFloat;
     dm.FDQProdutos.Locate('id', id_produto, []);
 
     if dm.FDQProdutosControleEstoque.AsString = 'S' then
     begin
       dm.FDQProdutos.Edit;
+      if vlr_unit <> dm.FDQProdutosVALORCOMPRA.AsFloat then
+      begin
+        if MessageDlg
+          ('O valor unitário do produto esta diferento do cadastro deseja alterar? #13Valor: '
+          + dm.FDQProdutosVALORCOMPRA.AsString, TMsgDlgType.mtwarning,
+          [TMsgDlgBtn.mbNo, TMsgDlgBtn.mbYes], 0) = mrYes then
+          dm.FDQProdutosVALORCOMPRA.AsFloat := vlr_unit;
+      end;
       dm.FDQProdutosESTOQUE.AsFloat := dm.FDQProdutosESTOQUE.AsFloat +
         qte_produto;
       dm.FDQProdutos.Post;
@@ -139,17 +155,17 @@ begin
     begin
       data_parcela := data_parcela + 31;
       dm.FDQconta.Append;
-      dm.FDQcontaID_PESSOA.AsInteger := dm.FDQVendaID_PESSOA.AsInteger;
-      dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQVendaID.AsInteger;
+      dm.FDQcontaID_PESSOA.AsInteger := dm.FDQEntradaID_PESSOA.AsInteger;
+      dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQEntradaID.AsInteger;
       dm.FDQcontaDT_RECORD.AsDateTime := date;
       dm.FDQcontaTP_CONTA.AsString := 'D';
-      dm.fdqcontaid_caixa.AsInteger := dm.FDQVendaID_CAIXA.AsInteger;
-      dm.FDQcontaDT_VENDA.AsDateTime := dm.FDQVendaDATA.AsDateTime;
-      dm.FDQcontaVLR_TOTAL.AsFloat := StrToFloat(EditValor.Text);
+      dm.fdqcontaid_caixa.AsInteger := dm.FDQEntradaID_CAIXA.AsInteger;
+      dm.FDQcontaDT_VENDA.AsDateTime := dm.FDQEntradaDATA.AsDateTime;
+      dm.FDQcontaVLR_TOTAL.AsFloat := strtofloat(EditValor.Text);
       dm.FDQcontaNR_parcela.AsInteger := I;
       dm.fdqcontastatus_conta.AsString := 'A';
       if EditVlrParcela.Text <> '' then
-        dm.FDQcontaVLR_PARCELA.AsFloat := StrToFloat(EditVlrParcela.Text);
+        dm.FDQcontaVLR_PARCELA.AsFloat := strtofloat(EditVlrParcela.Text);
       dm.fdqcontaDT_vencimentoParcela.AsDateTime := data_parcela;
       dm.FDQconta.Post;
     end;
@@ -157,19 +173,26 @@ begin
   else
   begin
     dm.FDQconta.Append;
-    dm.FDQcontaID_PESSOA.AsInteger := dm.FDQVendaID_PESSOA.AsInteger;
-    dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQVendaID.AsInteger;
+    dm.FDQcontaID_PESSOA.AsInteger := dm.FDQEntradaID_PESSOA.AsInteger;
+    dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQEntradaID.AsInteger;
     dm.FDQcontaDT_RECORD.AsDateTime := date;
-    dm.fdqcontaid_caixa.AsInteger := dm.FDQVendaID_CAIXA.AsInteger;
-    dm.FDQcontaDT_VENDA.AsDateTime := dm.FDQVendaDATA.AsDateTime;
-    dm.FDQcontaVLR_TOTAL.AsFloat := StrToFloat(EditValor.Text);
-    dm.FDQcontaVLR_PAGAMENTO.AsFloat := StrToFloat(EditValor.Text);
+    dm.fdqcontaid_caixa.AsInteger := dm.FDQEntradaID_CAIXA.AsInteger;
+    dm.FDQcontaDT_VENDA.AsDateTime := dm.FDQEntradaDATA.AsDateTime;
+    dm.FDQcontaVLR_TOTAL.AsFloat := strtofloat(EditValor.Text);
+    dm.FDQcontaVLR_PAGAMENTO.AsFloat := strtofloat(EditValor.Text);
     dm.FDQcontaTP_CONTA.AsString := 'D';
     dm.fdqcontastatus_conta.AsString := 'L';
     dm.FDQcontaDT_PAGAMENTO.AsDateTime := date;
     dm.FDQconta.Post;
   end;
   dm.FDConnection1.CommitRetaining;
+end;
+
+procedure TFrmPagamento.RectConfirmaDblClick(Sender: TObject);
+begin
+  AtualizaEstoque;
+  GerarConta;
+  FinalizaVenda;
 end;
 
 procedure TFrmPagamento.FinalizaVenda;
@@ -180,9 +203,10 @@ begin
   dm.FDQEntradaID_TIPOPAGAMENTO.AsInteger := dm.FDQTpagamentoID.AsInteger;
   dm.FDQEntrada.Post;
   dm.FDConnection1.CommitRetaining;
-  MessageDlg('Venda finalizada com sucesso!', TMsgDlgType.mtConfirmation,
+  MessageDlg('Lançamento finalizado com sucesso!', TMsgDlgType.mtConfirmation,
     [TMsgDlgBtn.mbok], 0);
 
   FrmPagamento.Close;
 end;
+
 end.

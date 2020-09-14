@@ -27,14 +27,5 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFrmLogin, FrmLogin);
   Application.CreateForm(TFrmMenu, FrmMenu);
-  Application.CreateForm(TFrmUsuario, FrmUsuario);
-  Application.CreateForm(TFrmPessoa, FrmPessoa);
-  Application.CreateForm(TFrmProdutos, FrmProdutos);
-  Application.CreateForm(TFrmVenda, FrmVenda);
-  Application.CreateForm(TFrmFinaliza, FrmFinaliza);
-  Application.CreateForm(TFrmCaixa, FrmCaixa);
-  Application.CreateForm(TFrmDespesas, FrmDespesas);
-  Application.CreateForm(TFrmEntradaProdutos, FrmEntradaProdutos);
-  Application.CreateForm(TFrmPagamento, FrmPagamento);
   Application.Run;
 end.

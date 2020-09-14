@@ -5,6 +5,7 @@ object FrmPagamento: TFrmPagamento
   ClientHeight = 373
   ClientWidth = 220
   Fill.Kind = Solid
+  Position = DesktopCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -54,6 +55,7 @@ object FrmPagamento: TFrmPagamento
     Stroke.Kind = None
     XRadius = 10.000000000000000000
     YRadius = 10.000000000000000000
+    OnDblClick = RectConfirmaDblClick
     object Label9: TLabel
       Align = Client
       StyledSettings = [Family, Size, Style]
@@ -70,11 +72,11 @@ object FrmPagamento: TFrmPagamento
     Position.X = 7.000000000000000000
     Position.Y = 48.000000000000000000
     Text = 'Valor Total'
-    TabOrder = 17
+    TabOrder = 7
   end
   object EditValor: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 2
+    TabOrder = 0
     TextSettings.Font.Size = 16.000000000000000000
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     Position.X = 7.000000000000000000
@@ -88,7 +90,7 @@ object FrmPagamento: TFrmPagamento
     Position.X = 6.000000000000000000
     Position.Y = 88.000000000000000000
     Text = 'Forma de Pagamento'
-    TabOrder = 11
+    TabOrder = 4
   end
   object ComboBox1: TComboBox
     Position.X = 6.000000000000000000
@@ -96,18 +98,19 @@ object FrmPagamento: TFrmPagamento
     Size.Width = 203.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 1
     OnExit = ComboBox1Exit
   end
   object Label3: TLabel
     Position.X = 7.000000000000000000
     Position.Y = 131.000000000000000000
     Text = 'Qte Parcelas'
-    TabOrder = 16
+    Visible = False
+    TabOrder = 6
   end
   object EditParcelas: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 1
+    TabOrder = 2
     TextSettings.Font.Size = 16.000000000000000000
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     Position.X = 7.000000000000000000
@@ -116,10 +119,11 @@ object FrmPagamento: TFrmPagamento
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     StyledSettings = [Family, FontColor]
+    Visible = False
   end
   object EditVlrParcela: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 0
+    TabOrder = 3
     TextSettings.Font.Size = 16.000000000000000000
     TextSettings.Font.StyleExt = {00070000000000000004000000}
     Position.X = 7.000000000000000000
@@ -128,11 +132,14 @@ object FrmPagamento: TFrmPagamento
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     StyledSettings = [Family, FontColor]
+    Visible = False
+    OnEnter = EditVlrParcelaEnter
   end
   object Label4: TLabel
     Position.X = 7.000000000000000000
     Position.Y = 171.000000000000000000
     Text = 'Valor Parcela'
-    TabOrder = 15
+    Visible = False
+    TabOrder = 5
   end
 end

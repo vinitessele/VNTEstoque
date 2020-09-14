@@ -40,9 +40,9 @@
     <Transaction>2020/09/12 01:01:40.000.214,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
     <Transaction>2020/09/12 01:01:55.000.000,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UEntradaProdutos.fmx</Transaction>
     <Transaction>2020/09/12 01:01:55.000.000,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\UEntradaProdutos.pas</Transaction>
-    <Transaction>2020/09/12 14:14:24.568,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
-    <Transaction>2020/09/12 14:14:47.182,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Upagamento.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
-    <Transaction>2020/09/12 14:14:47.182,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Upagamento.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.fmx</Transaction>
+    <Transaction>2020/09/12 14:14:24.000.568,=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
+    <Transaction>2020/09/12 14:14:47.000.182,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Upagamento.pas=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.pas</Transaction>
+    <Transaction>2020/09/12 14:14:47.000.182,C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Upagamento.fmx=C:\Users\vinic\Documents\Embarcadero\Studio\Projects\VNTEstoque\Unit1.fmx</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5"/>

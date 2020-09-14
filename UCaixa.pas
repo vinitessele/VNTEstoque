@@ -119,16 +119,17 @@ begin
     LabelStatus.Text := 'Fechado';
   dm.FDQCaixa.Edit;
   dm.FDQCaixaSTATUS_CAIXA.AsString := 'F';
+  LabelStatus.Text := 'Fechado';
   dm.FDQCaixaHORA_FECHAMENTO.AsDateTime := Time;
   dm.FDQCaixaDATA_FECHAMENTO.AsDateTime := date;
 
-  if EditReceita.Text <> '0' then
-    dm.FDQCaixaVLR_ENTRADA.AsFloat := StrToFloat(EditReceita.Text);
+  if EditReceita.Text <> '0,00' then
+    dm.FDQCaixaVLR_ENTRADA.AsString := EditReceita.Text;
 
   dm.FDQCaixaVLR_FECHAMENTO.AsFloat :=
     (vlr_abertura + StrToFloat(EditReceita.Text)) -
     StrToFloat(EditDespesas.Text);
-  EditVlrFechamento.Text := FormatFloat('#,##0.00',
+  EditVlrFechamento.Text := FormatFloat('#0.00',
     dm.FDQCaixaVLR_FECHAMENTO.AsFloat);
   EditDataFechamento.Text := DateToStr(dm.FDQCaixaDATA_FECHAMENTO.AsDateTime);
   dm.FDQCaixa.Post;
@@ -162,7 +163,7 @@ begin
     dm.FDQSumReceitas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumReceitas.Open();
 
-    EditReceita.Text := FormatFloat('#,##0.00', dm.FDQSumReceitasSUM.AsFloat);
+    EditReceita.Text := FormatFloat('#0.00', dm.FDQSumReceitasSUM.AsFloat);
 
     dm.FDQDespesasCaixa.Close;
     dm.FDQDespesasCaixa.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
@@ -172,10 +173,11 @@ begin
     dm.FDQSumDespesas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumDespesas.Open();
 
-    EditDespesas.Text := FormatFloat('#,##0.00', dm.FDQSumDespesasSum.AsFloat);
+    EditDespesas.Text := FormatFloat('#0.00', dm.FDQSumDespesasSum.AsFloat);
 
     EditDataAbertura.Text := dm.tabBusca.FieldByName('data_abertura').AsString;
-    EditVlrAbertura.Text := dm.tabBusca.FieldByName('vlr_abertura').AsString;
+    EditVlrAbertura.Text := FormatFloat('#0.00',
+      dm.tabBusca.FieldByName('vlr_abertura').AsFloat);
     if dm.tabBusca.FieldByName('status_caixa').AsString = 'A' then
       LabelStatus.Text := 'Aberto'
     else
@@ -214,7 +216,7 @@ begin
     dm.FDQSumReceitas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumReceitas.Open();
 
-    EditReceita.Text := FormatFloat('#,##0.00', dm.FDQSumReceitasSUM.AsFloat);
+    EditReceita.Text := FormatFloat('#0.00', dm.FDQSumReceitasSUM.AsFloat);
 
     dm.FDQDespesasCaixa.Close;
     dm.FDQDespesasCaixa.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
@@ -224,7 +226,7 @@ begin
     dm.FDQSumDespesas.ParamByName('caixa').AsInteger := StrToInt(EditID.Text);
     dm.FDQSumDespesas.Open();
 
-    EditDespesas.Text := FormatFloat('#,##0.00', dm.FDQSumDespesasSum.AsFloat);
+    EditDespesas.Text := FormatFloat('#0.00', dm.FDQSumDespesasSum.AsFloat);
 
     EditDataAbertura.Text := dm.tabBusca.FieldByName('data_abertura').AsString;
     EditVlrAbertura.Text := dm.tabBusca.FieldByName('vlr_abertura').AsString;
@@ -253,7 +255,7 @@ begin
     ('select id, status_caixa, data_abertura, vlr_abertura, vlr_fechamento from caixa where status_caixa =''F'' order by data_fechamento, hora_fechamento desc');
 
   vlr_abertura := dm.tabBusca.FieldByName('vlr_fechamento').AsFloat;
-  EditVlrAbertura.Text := FormatFloat('#,##0.00', vlr_abertura);
+  EditVlrAbertura.Text := FormatFloat('#0.00', vlr_abertura);
 
   AberturaCaixa(vlr_abertura);
 
