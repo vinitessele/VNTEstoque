@@ -35,7 +35,7 @@ type
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
-    ListBox1: TListBox;
+    ListBoxCliente: TListBox;
     Label13: TLabel;
     ListBoxProduto: TListBox;
     ListBoxItens: TListBox;
@@ -43,7 +43,7 @@ type
       Shift: TShiftState);
     procedure EditClienteKeyUp(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
-    procedure ListBox1DblClick(Sender: TObject);
+    procedure ListBoxClienteDblClick(Sender: TObject);
     procedure EditCodigoKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure EditCodigoExit(Sender: TObject);
@@ -54,6 +54,7 @@ type
     procedure EditVlUnitarioTyping(Sender: TObject);
     procedure EditVltotalTyping(Sender: TObject);
     procedure RectConfirmaClick(Sender: TObject);
+    procedure ListBoxItensClick(Sender: TObject);
   private
     procedure Insert_ItemVendas;
     procedure Insert_Venda;
@@ -65,9 +66,10 @@ type
   public
     { Public declarations }
     codItem: integer;
-    IdVenda: integer;
+    idVenda: integer;
     vl_total: real;
     NomeCliente: string;
+    id_cliente: integer;
   end;
 
 var
@@ -98,19 +100,19 @@ end;
 procedure TFrmVenda.EditClienteKeyUp(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
 begin
-  ListBox1.Visible := True;
-  ListBox1.items.Clear;
+  ListBoxCliente.Visible := True;
+  ListBoxCliente.items.Clear;
   dm.tabBusca.Open('SELECT ID,Nome,Rua,CpfCnpj FROM pessoa ' + ' WHERE ' +
     ' Nome LIKE ' + QuotedStr('%' + EditCliente.Text + '%') +
     ' OR CpfCnpj LIKE ' + QuotedStr('%' + EditCliente.Text + '%'));
-  ListBox1.items.BeginUpdate;
+  ListBoxCliente.items.BeginUpdate;
   while not dm.tabBusca.Eof do
   begin
-    ListBox1.items.Add(dm.tabBusca.FieldByName('id').AsString + ' - ' +
+    ListBoxCliente.items.Add(dm.tabBusca.FieldByName('id').AsString + ' - ' +
       dm.tabBusca.FieldByName('Nome').AsString);
     dm.tabBusca.Next;
   end;
-  ListBox1.items.EndUpdate;
+  ListBoxCliente.items.EndUpdate;
 end;
 
 procedure TFrmVenda.EditCodigoKeyUp(Sender: TObject; var Key: Word;
@@ -134,16 +136,23 @@ end;
 procedure TFrmVenda.EditQuantidadeEnter(Sender: TObject);
 begin
   ListBoxProduto.Visible := False;
-  ListBox1.Visible := False;
+  ListBoxCliente.Visible := False;
 end;
 
 procedure TFrmVenda.EditQuantidadeExit(Sender: TObject);
 var
   vlr_totalitem: real;
 begin
-  vlr_totalitem := StrToFloat(EditQuantidade.Text) *
-    StrToFloat(EditVlUnitario.Text);
-  EditVltotal.Text := FormatFloat('#0.00', vlr_totalitem);
+  if EditVlUnitario.Text <> EmptyStr then
+  begin
+    vlr_totalitem := StrToFloat(EditQuantidade.Text) *
+      StrToFloat(EditVlUnitario.Text);
+    EditVltotal.Text := FormatFloat('#0.00', vlr_totalitem);
+  end
+  else
+  begin
+    EditCodigo.SetFocus;
+  end;
 end;
 
 procedure TFrmVenda.EditVltotalTyping(Sender: TObject);
@@ -169,8 +178,6 @@ begin
       begin
         CancelVenda;
       end;
-    vkReturn:
-      ShowMessage('Enter');
     vkF8:
       begin
         Insert_ItemVendas;
@@ -183,23 +190,32 @@ begin
   end;
 end;
 
-procedure TFrmVenda.ListBox1DblClick(Sender: TObject);
-var
-  nome: string;
-  id: string;
+procedure TFrmVenda.ListBoxClienteDblClick(Sender: TObject);
 begin
-  nome := ListBox1.items[ListBox1.ItemIndex];
-  id := trim(Copy(nome, 0, Pos('-', nome) - 1));
-  EditCliente.Tag := StrToInt(id);
-  EditCliente.Text := nome;
-  ListBox1.Visible := False;
+  NomeCliente := ListBoxCliente.items[ListBoxCliente.ItemIndex];
+  id_cliente := StrToInt(trim(Copy(NomeCliente, 0, Pos('-', NomeCliente) - 1)));
+  EditCliente.Tag := id_cliente;
+  EditCliente.Text := NomeCliente;
+  ListBoxCliente.Visible := False;
 
   dm.FDQVenda.Edit;
-  dm.FDQVendaID_PESSOA.AsInteger := StrToInt(id);
+  dm.FDQVendaID_PESSOA.AsInteger := id_cliente;
   dm.FDQVenda.Post;
   dm.FDConnection1.CommitRetaining;
-
+  
   EditCodigo.SetFocus;
+end;
+
+procedure TFrmVenda.ListBoxItensClick(Sender: TObject);
+var
+  sql, nome, id: string;
+begin
+  nome := ListBoxItens.items[ListBoxItens.ItemIndex];
+  id := trim(Copy(nome, 0, Pos('-', nome) - 1));
+  sql := 'delete from venda_item where id =' + id;
+  dm.FDConnection1.ExecSQL(sql);
+  MessageDlg('Item excluido com sucesso!', TMsgDlgType.mtwarning,
+    [TMsgDlgBtn.mbok], 0);
 end;
 
 procedure TFrmVenda.ListBoxProdutoDblClick(Sender: TObject);
@@ -231,11 +247,11 @@ end;
 
 procedure TFrmVenda.Insert_ItemVendas;
 begin
-  dm.tabBusca.Open('SELECT id FROM venda order by id desc');
+  // dm.tabBusca.Open('SELECT id FROM venda order by id desc');
   EditCliente.Enabled := False;
   dm.FDQVendaItens.Append;
-  IdVenda := StrToInt(dm.tabBusca.FieldByName('id').AsString);
-  dm.FDQVendaItensID_VENDA.AsInteger := IdVenda;
+  // idVenda := StrToInt(dm.tabBusca.FieldByName('id').AsString);
+  dm.FDQVendaItensID_VENDA.AsInteger := idVenda;
   dm.FDQVendaItensID_PRODUTO.AsInteger := codItem;
   dm.FDQVendaItensQTE_PRODUTO.AsFloat := StrToFloat(EditQuantidade.Text);
   dm.FDQVendaItensVLR_UNITARIO.AsFloat := StrToFloat(EditVlUnitario.Text);
@@ -264,6 +280,7 @@ begin
     dm.FDQVendaID_CAIXA.AsInteger := dm.tabBusca.FieldByName('id').AsInteger;
     dm.FDQVenda.Post;
     dm.FDConnection1.CommitRetaining;
+    idVenda := dm.FDQVendaID.AsInteger;
   end
   else
   begin
@@ -283,6 +300,7 @@ begin
   Label11.Text := EmptyStr;
   Label10.Text := EmptyStr;
   Label11.Text := EmptyStr;
+  ListBoxItens.Clear;
 end;
 
 procedure TFrmVenda.FinalizaVenda;
@@ -296,19 +314,37 @@ begin
 end;
 
 procedure TFrmVenda.CancelVenda;
+var
+  sql: string;
 begin
-  dm.FDQVendaItens.Cancel;
-  dm.FDQVenda.Cancel;
-  dm.FDConnection1.RollbackRetaining;
-  GroupBox1.Enabled := False;
-  LimpaCampos;
+
+  dm.tabBusca.Open('SELECT id, data, vlr_total FROM venda where id = ' +
+    QuotedStr(IntToStr(idVenda)) + ' order by id desc');
+
+  if dm.tabBusca.FieldByName('vlr_total').AsString = EmptyStr then
+  begin
+    sql := 'delete from venda_item where id_venda=' +
+      QuotedStr(IntToStr(idVenda));
+    dm.FDConnection1.ExecSQL(sql);
+    sql := 'delete from venda where id=' + QuotedStr(IntToStr(idVenda));
+    dm.FDConnection1.ExecSQL(sql);
+
+    dm.FDQVendaItens.Cancel;
+    dm.FDQVenda.Cancel;
+    dm.FDConnection1.RollbackRetaining;
+    GroupBox1.Enabled := False;
+    LimpaCampos;
+    MessageDlg('Venda Cancelada com sucesso!', TMsgDlgType.mtwarning,
+      [TMsgDlgBtn.mbok], 0);
+  end;
+
 end;
 
 procedure TFrmVenda.AtualizaVenda;
 begin
   dm.tabBusca.Open('select vi.id, p.descricao,vi.vlr_total from venda_item vi '
     + ' inner join produto p on vi.id_produto=p.id' + ' where id_venda = ' +
-    QuotedStr(IntToStr(IdVenda)));
+    QuotedStr(IntToStr(idVenda)));
   ListBoxItens.items.BeginUpdate;
   ListBoxItens.Clear;
   while not dm.tabBusca.Eof do
@@ -321,7 +357,7 @@ begin
   ListBoxItens.items.EndUpdate;
   dm.tabBusca.Open
     ('select sum(vlr_total)as valor from venda_item where id_venda= ' +
-    QuotedStr(IntToStr(IdVenda)));
+    QuotedStr(IntToStr(idVenda)));
   vl_total := dm.tabBusca.FieldByName('valor').AsFloat;
   Label10.Text := FormatFloat('R$ #,##0.00',
     dm.tabBusca.FieldByName('valor').AsFloat);

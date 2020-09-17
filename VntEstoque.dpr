@@ -18,7 +18,8 @@ uses
   UCaixa in 'UCaixa.pas' {FrmCaixa},
   UDespesas in 'UDespesas.pas' {FrmDespesas},
   UEntradaProdutos in 'UEntradaProdutos.pas' {FrmEntradaProdutos},
-  Upagamento in 'Upagamento.pas' {FrmPagamento};
+  Upagamento in 'Upagamento.pas' {FrmPagamento},
+  UMovtCaixa in 'UMovtCaixa.pas' {FMovtoCaixa};
 
 {$R *.res}
 
@@ -27,5 +28,6 @@ begin
   Application.CreateForm(TDM, DM);
   Application.CreateForm(TFrmLogin, FrmLogin);
   Application.CreateForm(TFrmMenu, FrmMenu);
+  Application.CreateForm(TFMovtoCaixa, FMovtoCaixa);
   Application.Run;
 end.

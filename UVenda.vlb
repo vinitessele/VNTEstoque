@@ -1,7 +1,4 @@
-﻿[ListBox1]
-Coordinates=767,10,116,177
-
-[Label3]
+﻿[Label3]
 Coordinates=888,636,46,51
 
 [Label9]
@@ -138,4 +135,7 @@ Coordinates=789,467,116,87
 
 [DM.dsVendaItens]
 Coordinates=676,267,100,33
+
+[ListBoxCliente]
+Coordinates=767,10,116,177
 

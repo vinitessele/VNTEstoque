@@ -1,0 +1,157 @@
+object FMovtoCaixa: TFMovtoCaixa
+  Left = 0
+  Top = 0
+  Caption = 'Movimento de Caixa'
+  ClientHeight = 323
+  ClientWidth = 250
+  Fill.Kind = Solid
+  Position = DesktopCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object GroupBox1: TGroupBox
+    Position.X = 8.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 265.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Caixa'
+    TabOrder = 0
+    object ComboBox1: TComboBox
+      Items.Strings = (
+        'Suprimento'
+        'Sangria')
+      Position.X = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+    end
+    object EditSaldoAtual: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 4
+      Position.X = 16.000000000000000000
+      Position.Y = 88.000000000000000000
+      Enabled = False
+      Size.Width = 200.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label1: TLabel
+      Position.X = 18.000000000000000000
+      Position.Y = 22.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Movimento'
+      TabOrder = 7
+    end
+    object Label2: TLabel
+      Position.X = 18.000000000000000000
+      Position.Y = 69.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Saldo atual'
+      TabOrder = 6
+    end
+    object Label3: TLabel
+      Position.X = 18.000000000000000000
+      Position.Y = 117.000000000000000000
+      Size.Width = 143.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Valor Movimentado'
+      TabOrder = 5
+    end
+    object EditVlrMovimentacao: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 2
+      Position.X = 16.000000000000000000
+      Position.Y = 136.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnTyping = EditVlrMovimentacaoTyping
+      OnExit = EditVlrMovimentacaoExit
+    end
+    object Label4: TLabel
+      Position.X = 18.000000000000000000
+      Position.Y = 165.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Saldo final'
+      TabOrder = 3
+    end
+    object EditSaldoFinal: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 1
+      Position.X = 16.000000000000000000
+      Position.Y = 184.000000000000000000
+      Enabled = False
+      Size.Width = 200.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object RectConfirma: TRectangle
+      Align = Bottom
+      Fill.Color = claMidnightblue
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 221.000000000000000000
+      Size.Width = 223.000000000000000000
+      Size.Height = 39.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      OnClick = RectConfirmaClick
+      object Label9: TLabel
+        Align = Client
+        StyledSettings = [Family, Size, Style]
+        Size.Width = 223.000000000000000000
+        Size.Height = 39.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Center
+        Text = 'Finalizar<F10>'
+        TabOrder = 0
+      end
+    end
+  end
+  object Rectangle3: TRectangle
+    Align = Top
+    Fill.Color = claSlategray
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 240.000000000000000000
+    Size.Height = 36.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 10.000000000000000000
+    YRadius = 10.000000000000000000
+    object Label5: TLabel
+      Align = Client
+      StyledSettings = [Family, Style]
+      Size.Width = 240.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Movimento Caixa'
+      TabOrder = 0
+    end
+  end
+end

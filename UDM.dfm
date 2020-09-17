@@ -922,4 +922,54 @@ object DM: TDM
     Left = 72
     Top = 176
   end
+  object tabManipula: TFDQuery
+    Connection = FDConnection1
+    Left = 452
+    Top = 224
+  end
+  object FDQMovtoCaixa: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'gen_movtocaixa'
+    UpdateOptions.AutoIncFields = 'id'
+    SQL.Strings = (
+      'select * from movtocaixa')
+    Left = 216
+    Top = 256
+    object FDQMovtoCaixaID: TFDAutoIncField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object FDQMovtoCaixaDATA_MOVIMENTO: TDateField
+      FieldName = 'DATA_MOVIMENTO'
+      Origin = 'DATA_MOVIMENTO'
+    end
+    object FDQMovtoCaixaHORA_MOVIMENTO: TTimeField
+      FieldName = 'HORA_MOVIMENTO'
+      Origin = 'HORA_MOVIMENTO'
+    end
+    object FDQMovtoCaixaID_USUARIO: TIntegerField
+      FieldName = 'ID_USUARIO'
+      Origin = 'ID_USUARIO'
+    end
+    object FDQMovtoCaixaTP_MOVIMENTO: TStringField
+      FieldName = 'TP_MOVIMENTO'
+      Origin = 'TP_MOVIMENTO'
+      FixedChar = True
+      Size = 1
+    end
+    object FDQMovtoCaixaVLR_MOVIMENTO: TFMTBCDField
+      FieldName = 'VLR_MOVIMENTO'
+      Origin = 'VLR_MOVIMENTO'
+      Precision = 18
+      Size = 2
+    end
+    object FDQMovtoCaixaID_CAIXA: TIntegerField
+      FieldName = 'ID_CAIXA'
+      Origin = 'ID_CAIXA'
+    end
+  end
 end

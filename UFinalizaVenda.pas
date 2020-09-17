@@ -196,7 +196,7 @@ begin
 
   if qte_parcela > 0 then
   begin
-    if EditValorEntrada.Text <> '' then
+    if (EditValorEntrada.Text <> '') and (EditValorEntrada.Text <> '0,00') then
     begin
       dm.FDQconta.Append;
       dm.FDQcontaID_MOVIMENTACAO.AsInteger := dm.FDQVendaID.AsInteger;
@@ -221,6 +221,7 @@ begin
       dm.FDQconta.Append;
       dm.FDQcontaID_PESSOA.AsInteger := dm.FDQVendaID_PESSOA.AsInteger;
       dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQVendaID.AsInteger;
+      dm.FDQcontaID_MOVIMENTACAO.AsInteger := dm.FDQVendaID.AsInteger;
       dm.FDQcontaDT_RECORD.AsDateTime := date;
       dm.FDQcontaTP_CONTA.AsString := 'R';
       dm.fdqcontaid_caixa.AsInteger := dm.FDQVendaID_CAIXA.AsInteger;
@@ -241,6 +242,7 @@ begin
     dm.FDQconta.Append;
     dm.FDQcontaID_PESSOA.AsInteger := dm.FDQVendaID_PESSOA.AsInteger;
     dm.FDQcontaDOCUMENTO.AsInteger := dm.FDQVendaID.AsInteger;
+    dm.FDQcontaID_MOVIMENTACAO.AsInteger := dm.FDQVendaID.AsInteger;
     dm.FDQcontaDT_RECORD.AsDateTime := date;
     dm.fdqcontaid_caixa.AsInteger := dm.FDQVendaID_CAIXA.AsInteger;
     dm.FDQcontaDT_VENDA.AsDateTime := dm.FDQVendaDATA.AsDateTime;

@@ -46,6 +46,7 @@ type
     LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
     ListBox1: TListBox;
     EditLocalizar: TEdit;
+    RectMvtoCaixaAdd: TRectangle;
     procedure EditVlrAberturaTyping(Sender: TObject);
     procedure RectNovoClick(Sender: TObject);
     procedure RectSalvarClick(Sender: TObject);
@@ -53,6 +54,7 @@ type
     procedure RectpPesquisarClick(Sender: TObject);
     procedure EditLocalizarExit(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
+    procedure RectMvtoCaixaAddClick(Sender: TObject);
   private
     procedure AberturaCaixa(vlr_abertura: Real);
     procedure FechamentoCaixa(vlr_abertura: Real);
@@ -68,7 +70,7 @@ implementation
 
 {$R *.fmx}
 
-uses UDM, uFormat, UMenu;
+uses UDM, uFormat, UMenu, UMovtCaixa;
 
 procedure TFrmCaixa.EditLocalizarExit(Sender: TObject);
 var
@@ -103,6 +105,7 @@ begin
   dm.FDQCaixaSTATUS_CAIXA.AsString := 'A';
   dm.FDQCaixa.Post;
   dm.FDConnection1.CommitRetaining;
+  LabelStatus.Text := 'Aberto';
   MessageDlg('Caixa aberto com sucesso', TMsgDlgType.mtConfirmation,
     [TMsgDlgBtn.mbok], 0);
 end;
@@ -136,6 +139,8 @@ begin
   dm.FDConnection1.CommitRetaining;
   MessageDlg('Caixa Fechado com sucesso', TMsgDlgType.mtConfirmation,
     [TMsgDlgBtn.mbok], 0);
+  RectNovo.Enabled := True;
+
 end;
 
 procedure TFrmCaixa.EditVlrAberturaTyping(Sender: TObject);
@@ -152,7 +157,7 @@ begin
 
   if dm.tabBusca.RecordCount > 0 then
   begin
-
+    RectNovo.Enabled := false;
     EditID.Text := dm.tabBusca.FieldByName('id').AsString;
 
     dm.FDQReceitas.Close;
@@ -185,6 +190,7 @@ begin
   end
   else
   begin
+    RectNovo.Enabled := True;
     dm.FDQReceitas.Close;
     dm.FDQDespesasCaixa.Close;
   end;
@@ -240,6 +246,14 @@ begin
     dm.FDQReceitas.Close;
     dm.FDQDespesasCaixa.Close;
   end;
+end;
+
+procedure TFrmCaixa.RectMvtoCaixaAddClick(Sender: TObject);
+begin
+  if not Assigned(FMovtoCaixa) then
+    Application.CreateForm(TFMovtoCaixa, FMovtoCaixa);
+  FMovtoCaixa.Show;
+
 end;
 
 procedure TFrmCaixa.RectNovoClick(Sender: TObject);

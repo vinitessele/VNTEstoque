@@ -161,6 +161,15 @@ type
     dsEntrada: TDataSource;
     DsEntradaItem: TDataSource;
     FDQEntradaNR_NOTA: TIntegerField;
+    tabManipula: TFDQuery;
+    FDQMovtoCaixa: TFDQuery;
+    FDQMovtoCaixaID: TFDAutoIncField;
+    FDQMovtoCaixaDATA_MOVIMENTO: TDateField;
+    FDQMovtoCaixaHORA_MOVIMENTO: TTimeField;
+    FDQMovtoCaixaID_USUARIO: TIntegerField;
+    FDQMovtoCaixaTP_MOVIMENTO: TStringField;
+    FDQMovtoCaixaVLR_MOVIMENTO: TFMTBCDField;
+    FDQMovtoCaixaID_CAIXA: TIntegerField;
     procedure FDConnection1AfterConnect(Sender: TObject);
     procedure FDConnection1BeforeConnect(Sender: TObject);
   private
@@ -196,6 +205,7 @@ begin
   FDQSumDespesas.Active := True;
   FDQEntrada.Active := True;
   FDQEntradaItem.Active := True;
+  FDQMovtoCaixa.Active := True;
 end;
 
 procedure TDM.FDConnection1BeforeConnect(Sender: TObject);
@@ -210,12 +220,12 @@ begin
   servidor := ArqIni.ReadString('SERVIDOR', 'Servidor', 'Erro ao ler o valor');
   caminho := ArqIni.ReadString('SERVIDOR', 'Database', 'Erro ao ler o valor');
   ArqIni.Free;
-  strPath := System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath,
-    caminho );
-//{$IFDEF RELEASE}
+  strPath := System.IOUtils.TPath.Combine
+    (System.IOUtils.TPath.GetDocumentsPath, caminho);
+{$IFDEF RELEASE}
   FDConnection1.Params.Values['DATABASE'] := strPath;
-//{$ELSE}
-//{$ENDIF}
+  // {$ELSE}
+{$ENDIF}
 end;
 
 end.
